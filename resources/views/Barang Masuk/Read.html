@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Pendataan Barang Masuk Java Juice</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Menambahkan gambar latar belakang */
+        body {
+            background-image: url('https://png.pngtree.com/thumb_back/fw800/background/20230914/pngtree-fruit-juice-splash-isolated-on-white-background-image_13507536.jpg'); /* Pastikan path sesuai dengan lokasi file gambar */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: rgb(255, 241, 46);
+        }
+
+        /* Mengatur tampilan tabel */
+        table {
+            background-color: rgba(236, 209, 56, 0.8); /* Transparansi tabel agar latar terlihat */
+            color: black; /* Teks hitam di dalam tabel */
+        }
+
+        /* Tombol tambah Barang Masuk */
+        .btn-primary {
+            background-color: #28a745;
+        }
+
+        h1, h4 {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Tambahkan bayangan pada teks agar terlihat lebih jelas di atas gambar latar belakang */
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Pendataan Barang Masuk Java Juice <br></h1>
+        
+        <div class="text-right mb-3">
+            <a href="create.html"><button class="btn btn-primary">Tambahkan Barang Masuk</button></a>
+        </div>
+        
+        <h4>Total Barang Masuk: 1</h4>
+        
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Id Barang Masuk</th>
+                    <th>Id Barang</th>
+                    <th>Jumlah</th>
+                    <th>Tanggal</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>JUZ Mangga</td>
+            
+                
+                    <td>Rp.15000</td>
+                
+                    <td>
+                        <a href="edit.html?id=1"><button class="btn btn-warning">Edit</button></a> |
+                        <a href="delete.html?id=1"><button class="btn btn-danger">Hapus</button></a>
+                    </td>
+                </tr>
+                <!-- Tambahkan baris lainnya sesuai kebutuhan -->
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

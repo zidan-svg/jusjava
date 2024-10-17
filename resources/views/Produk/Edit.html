@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Produk - Java Juice</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url('https://png.pngtree.com/thumb_back/fw800/background/20230914/pngtree-fruit-juice-splash-isolated-on-white-background-image_13507536.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            height: 100vh; /* Membuat latar belakang memenuhi seluruh halaman */
+            color: rgb(253, 238, 25); /* Mengubah teks menjadi putih agar lebih kontras dengan background */
+        }
+        .container {
+            background-color: rgba(0, 0, 0, 0.7); /* Membuat latar belakang form sedikit transparan agar lebih mudah dibaca */
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 50px;
+        }
+        label, h1 {
+            color: rgb(250, 219, 47);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Edit Produk Java Juice</h1>
+
+        <form action="/update?id=1" method="POST"> <!-- Ganti dengan URL yang sesuai -->
+            <div class="form-group">
+                <label for="nama">Nama Produk</label>
+                <input type="text" class="form-control" name="nama" value="JUZ Mangga" required>
+            </div>
+            <div class="form-group">
+                <label for="Harga">Harga</label>
+                <input type="number" class="form-control" name="Harga" value="20" required>
+            <button type="submit" class="btn btn-primary">Update Produk</button>
+            <a href="index.html" class="btn btn-secondary">Kembali</a>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

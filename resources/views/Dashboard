@@ -1,0 +1,27 @@
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
+    <h1>Dashboard</h1>
+    <div class="row">
+        <div class="col-md-3">
+            <a href="{{ route('barangs.index') }}" class="btn btn-primary btn-block">Barang</a>
+        </div>
+        <div class="col-md-3">
+            <a href="{{ route('barang.masuk') }}" class="btn btn-primary btn-block">Barang Masuk</a>
+        </div>
+        <div class="col-md-3">
+            <a href="{{ route('barang.keluar') }}" class="btn btn-primary btn-block">Barang Keluar</a>
+        </div>
+        <div class="col-md-3">
+            <a href="{{ route('produks.index') }}" class="btn btn-primary btn-block">Produk</a>
+        </div>
+        <div class="col-md-3 mt-3">
+            <a href="{{ route('transaksis.index') }}" class="btn btn-primary btn-block">Transaksi</a>
+        </div>
+        <div class="col-md-3 mt-3">
+            <a href="{{ route('laporan.index') }}" class="btn btn-primary btn-block">Laporan</a>
+        </div>
+    </div>
+</div>
+@endsection

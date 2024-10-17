@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Juice Dashboard</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f9f9f9;
+            overflow-x: hidden;
+        }
+
+        /* Sidebar Styling */
+        .sidebar {
+            height: 100vh;
+            background-color: #ffcc80; /* Light orange */
+            color: #4a4a4a;
+            padding-top: 20px;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 250px;
+            transition: all 0.5s ease;
+            z-index: 1000;
+        }
+
+        .sidebar a {
+            color: #4a4a4a;
+            display: block;
+            padding: 15px 20px;
+            text-decoration: none;
+            font-size: 18px;
+            transition: background-color 0.3s ease, padding-left 0.3s ease;
+        }
+
+        .sidebar a:hover {
+            background-color: #ffb74d; /* Darker orange */
+            padding-left: 30px;
+        }
+
+        .sidebar .nav-item.active a {
+            background-color: #ffb74d;
+        }
+
+        .sidebar i {
+            margin-right: 10px;
+        }
+
+        /* Parallax Banner Styling */
+        .parallax-banner {
+            background-image: url('images/juice-banner.jpg');
+            height: 400px;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .parallax-banner h1 {
+            font-size: 48px;
+            font-weight: bold;
+        }
+
+        .parallax-banner p {
+            font-size: 20px;
+            margin-top: 10px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .content {
+            margin-left: 260px;
+            padding: 50px;
+            animation: slideIn 1.2s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .content h1 {
+            color: #ff7043; /* Juice-themed color */
+            font-size: 36px;
+        }
+
+        /* Card Hover Effect */
+        .card {
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 30px;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-img-top {
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover .card-img-top {
+            transform: scale(1.1);
+        }
+
+        .card-body {
+            text-align: center;
+        }
+
+        footer {
+            background-color: #ffcc80; /* Light orange */
+            color: #4a4a4a;
+            padding: 15px 0;
+            text-align: center;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h3 class="text-center mb-4">Java Juice</h3>
+        <nav class="nav flex-column">
+            <a class="nav-link active" href="#"><i class="fa fa-home"></i> Home</a>
+            <a class="nav-link" href="#"><i class="fa fa-info-circle"></i> About</a>
+            <a class="nav-link" href="#"><i class="fa fa-lemon-o"></i> Our Juices</a>
+            <a class="nav-link" href="#"><i class="fa fa-star"></i> Testimonials</a>
+            <a class="nav-link" href="#"><i class="fa fa-envelope"></i> Contact Us</a>
+        </nav>
+    </div>
+
+    <!-- Parallax Banner -->
+    <div class="parallax-banner">
+        <div>
+            <h1>Fresh and Delicious Juices</h1>
+            <p>All-natural, organic, and refreshing.</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <h1>Welcome to Java Juice Dashboard</h1>
+        <p>
+            At Java Juice, we believe in delivering fresh, all-natural juices that rejuvenate and nourish your body. Our company prides itself on using only the best ingredients, sourced from organic farms, to provide you with a healthy and delicious way to hydrate.
+        </p>
+
+        <div class="row mt-4">
+            <!-- Juice Options -->
+            <div class="col-md-4">
+                <div class="card">
+                    <img class="card-img-top" src="images/juice1.jpg" alt="Tropical Blast">
+                    <div class="card-body">
+                        <h5 class="card-title">Tropical Blast</h5>
+                        <p class="card-text">A refreshing blend of tropical fruits like mango, pineapple, and banana.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card">
+                    <img class="card-img-top" src="images/juice2.jpg" alt="Berry Delight">
+                    <div class="card-body">
+                        <h5 class="card-title">Berry Delight</h5>
+                        <p class="card-text">A delightful mix of berries, including strawberries, blueberries, and raspberries.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card">
+                    <img class="card-img-top" src="images/juice3.jpg" alt="Green Power">
+                    <div class="card-body">
+                        <h5 class="card-title">Green Power</h5>
+                        <p class="card-text">A healthy green juice with spinach, kale, cucumber, and a touch of apple.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; <span id="year"></span> Java Juice. All rights reserved.</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+
+    <!-- Custom JS -->
+    <script>
+        // Set the current year in the footer
+        document.getElementById("year").innerHTML = new Date().getFullYear();
+    </script>
+
+</body>
+
+</html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Juice Dashboard</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f9f9f9;
+            overflow-x: hidden;
+        }
+
+        /* Sidebar Styling */
+        .sidebar {
+            height: 100vh;
+            background-color: #ffcc80; /* Light orange */
+            color: #4a4a4a;
+            padding-top: 20px;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 250px;
+            transition: all 0.5s ease;
+            z-index: 1000;
+        }
+
+        .sidebar a {
+            color: #4a4a4a;
+            display: block;
+            padding: 15px 20px;
+            text-decoration: none;
+            font-size: 18px;
+            transition: background-color 0.3s ease, padding-left 0.3s ease;
+        }
+
+        .sidebar a:hover {
+            background-color: #ffb74d; /* Darker orange */
+            padding-left: 30px;
+        }
+
+        .sidebar .nav-item.active a {
+            background-color: #ffb74d;
+        }
+
+        .sidebar i {
+            margin-right: 10px;
+        }
+
+        /* Parallax Banner Styling */
+        .parallax-banner {
+            background-image: url('images/juice-banner.jpg');
+            height: 400px;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .parallax-banner h1 {
+            font-size: 48px;
+            font-weight: bold;
+        }
+
+        .parallax-banner p {
+            font-size: 20px;
+            margin-top: 10px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .content {
+            margin-left: 260px;
+            padding: 50px;
+            animation: slideIn 1.2s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .content h1 {
+            color: #ff7043; /* Juice-themed color */
+            font-size: 36px;
+        }
+
+        /* Card Hover Effect */
+        .card {
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 30px;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-img-top {
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover .card-img-top {
+            transform: scale(1.1);
+        }
+
+        .card-body {
+            text-align: center;
+        }
+
+        footer {
+            background-color: #ffcc80; /* Light orange */
+            color: #4a4a4a;
+            padding: 15px 0;
+            text-align: center;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h3 class="text-center mb-4">Java Juice</h3>
+        <nav class="nav flex-column">
+            <a class="nav-link active" href="#"><i class="fa fa-home"></i> Home</a>
+            <a class="nav-link" href="#"><i class="fa fa-info-circle"></i> About</a>
+            <a class="nav-link" href="#"><i class="fa fa-lemon-o"></i> Our Juices</a>
+            <a class="nav-link" href="#"><i class="fa fa-star"></i> Testimonials</a>
+            <a class="nav-link" href="#"><i class="fa fa-envelope"></i> Contact Us</a>
+        </nav>
+    </div>
+
+    <!-- Parallax Banner -->
+    <div class="parallax-banner">
+        <div>
+            <h1>Fresh and Delicious Juices</h1>
+            <p>All-natural, organic, and refreshing.</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <h1>Welcome to Java Juice Dashboard</h1>
+        <p>
+            At Java Juice, we believe in delivering fresh, all-natural juices that rejuvenate and nourish your body. Our company prides itself on using only the best ingredients, sourced from organic farms, to provide you with a healthy and delicious way to hydrate.
+        </p>
+
+        <div class="row mt-4">
+            <!-- Juice Options -->
+            <div class="col-md-4">
+                <div class="card">
+                    <img class="card-img-top" src="images/juice1.jpg" alt="Tropical Blast">
+                    <div class="card-body">
+                        <h5 class="card-title">Tropical Blast</h5>
+                        <p class="card-text">A refreshing blend of tropical fruits like mango, pineapple, and banana.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card">
+                    <img class="card-img-top" src="images/juice2.jpg" alt="Berry Delight">
+                    <div class="card-body">
+                        <h5 class="card-title">Berry Delight</h5>
+                        <p class="card-text">A delightful mix of berries, including strawberries, blueberries, and raspberries.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card">
+                    <img class="card-img-top" src="images/juice3.jpg" alt="Green Power">
+                    <div class="card-body">
+                        <h5 class="card-title">Green Power</h5>
+                        <p class="card-text">A healthy green juice with spinach, kale, cucumber, and a touch of apple.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; <span id="year"></span> Java Juice. All rights reserved.</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+
+    <!-- Custom JS -->
+    <script>
+        // Set the current year in the footer
+        document.getElementById("year").innerHTML = new Date().getFullYear();
+    </script>
+
+</body>
+
+</html>
