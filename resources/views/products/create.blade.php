@@ -72,6 +72,7 @@
                                         @enderror
                                     </div>
                                 </div>
+                                
                                 <div class="col-md-6">
                                     <div class="form-group mb-3">
                                         <label class="font-weight-bold">Stok</label>
