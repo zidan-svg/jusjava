@@ -48,8 +48,6 @@
                              </div>
                          </div>
                             
-
-
                             <div class="form-group mb-3">
                                 <label class="font-weight-bold">Pendapatan</label>
                                 <input type="number" class="form-control @error('Pendapatan') is-invalid @enderror" name="Pendapatan" value="{{ old('Pendapatan') }}" placeholder="Masukkan Pendapatan">
