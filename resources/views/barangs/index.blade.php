@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Laporan</title>
+    <title>Data Barang</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
@@ -15,36 +15,35 @@
         <div class="row">
             <div class="col-md-12">
                 <div>
-                    <h3 class="text-center my-4">Sistem Manajemen Alat Pancing</h3>
-                    <h3 class="text-center my-4">Data Laporan</h3>
+                    <h3 class="text-center my-4">Sistem Manajemen Java juice</h3>
+                    <h3 class="text-center my-4">Data Barang</h3>
 
                     <hr>
                 </div>
                 <div class="card border-0 shadow-sm rounded">
                     <div class="card-body">
-                    <a href="{{ route('products.create') }}" class="btn btn-md btn-success mb-3">Tambahkan Produk</a>
-                        <a href="{{ route('transaksis.index') }}" class="btn btn-md btn-success mb-3">Transaksi</a>
+                        <a href="{{ route('barangs.create') }}" class="btn btn-md btn-success mb-3">Tambahkan Barang</a>
+                        <a href="{{ route('products.index') }}" class="btn btn-md btn-success mb-3">Produk</a>
                         <a href="{{ route('laporans.index') }}" class="btn btn-md btn-success mb-3">Laporan</a>
-                        <a href="{{ route('barangs.index') }}" class="btn btn-md btn-success mb-3">Barang</a>
-                        <a href="{{ route('laporans.index') }}" class="btn btn-md btn-success mb-3">Barang masuk</a>
-                        <a href="{{ route('laporans.index') }}" class="btn btn-md btn-success mb-3">Barang keluar</a>
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th scope="col">Tanggal</th>
-                                    <th scope="col">Pendapatan</th>
+                                    <th scope="col">Nama barang</th>
+                                    <th scope="col">Jenis</th>
+                                    <th scope="col">Jumlah</th>
                                     <th scope="col" style="width: 20%">Opsi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($laporans as $laporan)
+                                @forelse ($barangs as $barang)
                                     <tr>
-                                        <td>{{ $laporan->Tanggal }}</td>
-                                        <td>{{ "Rp " . number_format($laporan->Pendapatan,2,',','.') }}</td>
+                                        <td>{{ $barang->Nama_barang }}</td>
+                                        <td>{{ $barang->Jenis }}</td>
+                                        <td>{{ $barang->Jumlah}}</td>
                                         <td class="text-center">
-                                            <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('laporans.destroy', $laporan->id) }}" method="POST">
-                                                <a href="{{ route('laporans.show', $laporan->id) }}" class="btn btn-sm btn-dark">Lihat</a>
-                                                <a href="{{ route('laporans.edit', $laporan->id) }}" class="btn btn-sm btn-primary">Edit</a>
+                                            <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('barangs.destroy', $barang->id) }}" method="POST">
+                                                <a href="{{ route('barangs.show', $barang->id) }}" class="btn btn-sm btn-dark">Lihat</a>
+                                                <a href="{{ route('barangs.edit', $barang->id) }}" class="btn btn-sm btn-primary">Edit</a>
                                                 
                                                 @csrf
                                                 @method('DELETE')
@@ -54,12 +53,12 @@
                                     </tr>
                                 @empty
                                     <div class="alert alert-success">
-                                        Data laporan belum Tersedia.
+                                        Data Transaksi belum Tersedia.
                                     </div>
                                 @endforelse
                             </tbody>
                         </table>
-                        {{ $laporans->links() }}
+                        {{ $barangs->links() }}
                     </div>
                 </div>
             </div>

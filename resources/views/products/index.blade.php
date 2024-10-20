@@ -25,6 +25,9 @@
                         <a href="{{ route('products.create') }}" class="btn btn-md btn-success mb-3">Tambahkan Produk</a>
                         <a href="{{ route('transaksis.index') }}" class="btn btn-md btn-success mb-3">Transaksi</a>
                         <a href="{{ route('laporans.index') }}" class="btn btn-md btn-success mb-3">Laporan</a>
+                        <a href="{{ route('barangs.index') }}" class="btn btn-md btn-success mb-3">Barang</a>
+                        <a href="{{ route('laporans.index') }}" class="btn btn-md btn-success mb-3">Barang masuk</a>
+                        <a href="{{ route('laporans.index') }}" class="btn btn-md btn-success mb-3">Barang keluar</a>
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
