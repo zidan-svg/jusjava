@@ -132,7 +132,7 @@ class ProductController extends Controller
         }
 
         //redirect to index
-        return redirect()->route('products.index')->with(['success' => 'Data Berhasil Diubah!']);
+        return redirect()->route('dashboard')->with(['success' => 'Data Berhasil Disimpan!']);
     }
     
     /**
@@ -153,6 +153,6 @@ class ProductController extends Controller
         $product->delete();
 
         //redirect to index
-        return redirect()->route('products.index')->with(['success' => 'Data Berhasil Dihapus!']);
+        return redirect()->route('dashboard')->with(['success' => 'Data Berhasil Disimpan!']);
     }
 }
