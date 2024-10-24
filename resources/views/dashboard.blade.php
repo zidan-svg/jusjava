@@ -1,16 +1,17 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard - Tema Gelap')
+@section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Dashboard</h1>
+    <h1>Sistem Manajemen Toko Alat Pancing</h1>
 @stop
 
 @section('content')
     {{-- Card Daftar Produk --}}
     <div class="card bg-dark text-white mb-4">
-        <div class="card-header">
+        <div class="card-header d-flex justify-content-between align-items-center">
             <h3 class="card-title">Produk</h3>
+            <a href="{{ route('products.create') }}" class="btn btn-sm btn-success">Tambah Produk</a>
         </div>
         <div class="card-body">
             <table class="table table-bordered table-dark">
@@ -38,7 +39,7 @@
                                     <a href="{{ route('products.edit', $product->id) }}" class="btn btn-sm btn-primary">Edit</a>
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger"onclick="return confirm('Apakah Anda yakin ingin menghapus transaksi ini?');">Hapus</button>
+                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus produk ini?');">Hapus</button>
                                 </form>
                             </td>
                         </tr>
@@ -58,62 +59,64 @@
 
     {{-- Card Transaksi --}}
     <div class="card bg-dark text-white mb-4">
-    <div class="card-header">
-        <h3 class="card-title">Transaksi</h3>
-    </div>
-    <div class="card-body">
-        <table class="table table-bordered table-dark">
-            <thead>
-                <tr>
-                    <th scope="col">Tanggal transaksi</th>
-                    <th scope="col">Jumlah barang</th>
-                    <th scope="col">Total pembayaran</th>
-                    <th scope="col" style="width: 20%">Opsi</th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse ($transaksis as $transaksi)
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h3 class="card-title">Transaksi</h3>
+            <a href="{{ route('transaksis.create') }}" class="btn btn-sm btn-success">Tambah Transaksi</a>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered table-dark">
+                <thead>
                     <tr>
-                        <td>{{ $transaksi->Tanggal_transaksi }}</td>
-                        <td>{{ $transaksi->Jumlah_barang }}</td>
-                        <td>{{ "Rp " . number_format($transaksi->Total_pembayaran,2,',','.') }}</td>
-                        <td class="text-center">
-                            <a href="{{ route('transaksis.show', $transaksi->id) }}" class="btn btn-sm btn-dark">Lihat</a>
-                            <a href="{{ route('transaksis.edit', $transaksi->id) }}" class="btn btn-sm btn-primary">Edit</a>
+                        <th scope="col">Tanggal transaksi</th>
+                        <th scope="col">Jumlah barang</th>
+                        <th scope="col">Total pembayaran</th>
+                        <th scope="col" style="width: 20%">Opsi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse ($transaksis as $transaksi)
+                        <tr>
+                            <td>{{ $transaksi->Tanggal_transaksi }}</td>
+                            <td>{{ $transaksi->Jumlah_barang }}</td>
+                            <td>{{ "Rp " . number_format($transaksi->Total_pembayaran,2,',','.') }}</td>
+                            <td class="text-center">
+                                <a href="{{ route('transaksis.show', $transaksi->id) }}" class="btn btn-sm btn-dark">Lihat</a>
+                                <a href="{{ route('transaksis.edit', $transaksi->id) }}" class="btn btn-sm btn-primary">Edit</a>
 
-                            <!-- Form untuk hapus transaksi -->
-                            <form action="{{ route('transaksis.destroy', $transaksi->id) }}" method="POST" style="display:inline-block;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus transaksi ini?');">Hapus</button>
-                            </form>
-                        </td>
-                    </tr>
-                @empty
-                    <tr>
-                        <td colspan="4" class="text-center">
-                            <div class="alert alert-success">
-                                Data Transaksi belum tersedia.
-                            </div>
-                        </td>
-                    </tr>
-                @endforelse
-            </tbody>
-        </table>
+                                <!-- Form untuk hapus transaksi -->
+                                <form action="{{ route('transaksis.destroy', $transaksi->id) }}" method="POST" style="display:inline-block;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus transaksi ini?');">Hapus</button>
+                                </form>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="4" class="text-center">
+                                <div class="alert alert-success">
+                                    Data Transaksi belum tersedia.
+                                </div>
+                            </td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
 
     {{-- Card Laporan --}}
     <div class="card bg-dark text-white">
-        <div class="card-header">
+        <div class="card-header d-flex justify-content-between align-items-center">
             <h3 class="card-title">Laporan</h3>
+            <a href="{{ route('laporans.create') }}" class="btn btn-sm btn-success">Tambah Laporan</a>
         </div>
         <div class="card-body">
             <table class="table table-bordered table-dark">
                 <thead>
                     <tr>
                         <th scope="col">Tanggal</th>
-                        <th scope="col">Jumlah barang</th>
+                        <th scope="col">Pendapatan</th>
                         <th scope="col" style="width: 20%">Opsi</th>
                     </tr>
                 </thead>
@@ -123,15 +126,15 @@
                             <td>{{ $laporan->Tanggal }}</td>
                             <td>{{ "Rp " . number_format($laporan->Pendapatan,2,',','.') }}</td>
                             <td class="text-center">
-                            <a href="{{ route('laporans.show', $laporan->id) }}" class="btn btn-sm btn-dark">Lihat</a>
-                            <a href="{{ route('laporans.edit', $laporan->id) }}" class="btn btn-sm btn-primary">Edit</a>
+                                <a href="{{ route('laporans.show', $laporan->id) }}" class="btn btn-sm btn-dark">Lihat</a>
+                                <a href="{{ route('laporans.edit', $laporan->id) }}" class="btn btn-sm btn-primary">Edit</a>
 
-                            <!-- Form untuk hapus transaksi -->
-                            <form action="{{ route('laporans.destroy', $laporan->id) }}" method="POST" style="display:inline-block;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus transaksi ini?');">Hapus</button>
-                            </form>
+                                <!-- Form untuk hapus laporan -->
+                                <form action="{{ route('laporans.destroy', $laporan->id) }}" method="POST" style="display:inline-block;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus laporan ini?');">Hapus</button>
+                                </form>
                             </td>
                         </tr>
                     @empty
