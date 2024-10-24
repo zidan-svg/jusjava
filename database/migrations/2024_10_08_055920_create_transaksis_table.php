@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('transaksis', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->foreignId('product_id')->constrained('products')->onDelete('cascade'); // Foreign key untuk produk            
             $table->date('Tanggal_transaksi');
             $table->string('Nama_pembeli');
             $table->integer('Jumlah_barang');
             $table->bigInteger('Total_pembayaran');
+            $table->timestamps();
         });
     }
 

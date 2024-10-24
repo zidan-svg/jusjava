@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\transaksi; 
+use App\Models\Product; 
 
 use Illuminate\View\View;
 
@@ -20,30 +21,49 @@ class TransaksiController extends Controller
 
         return view('transaksis.index', compact('transaksis'));
     }
-    public function create(): View
+    public function create()
     {
-        return view('transaksis.create');
+        $products = Product::all(); // Ambil semua produk
+        return view('transaksis.create', compact('products'));
+    }
+    
+public function store(Request $request)
+{
+    // Validasi input
+    $request->validate([
+        'product_id' => 'required|exists:products,id',
+        'Tanggal_transaksi' => 'required|date',
+        'Nama_pembeli' => 'required|string',
+        'Jumlah_barang' => 'required|integer|min:1',
+    ]);
+
+    // Ambil produk berdasarkan ID
+    $product = Product::findOrFail($request->product_id);
+
+    // Cek apakah stok cukup
+    if ($product->stock < $request->Jumlah_barang) {
+        return redirect()->back()->with('error', 'Stok produk tidak mencukupi');
     }
 
-    public function store(Request $request): RedirectResponse
-    {
-        $request->validate([
-            'Tanggal_transaksi'  => 'required|date',
-            'Nama_pembeli'       => 'required|min:1',
-            'Jumlah_barang'      => 'required|numeric',
-            'Total_pembayaran'   => 'required|numeric'
-        ]);
+    // Hitung total pembayaran
+    $total_payment = $product->price * $request->Jumlah_barang;
 
-        //create product
-        transaksi::create([
-            'Tanggal_transaksi'            => $request->Tanggal_transaksi,
-            'Nama_pembeli'                 => $request->Nama_pembeli,
-            'Jumlah_barang'                => $request->Jumlah_barang,
-            'Total_pembayaran'             => $request->Total_pembayaran
-        ]);
+    // Buat transaksi
+     Transaksi::create([
+        'product_id' => $request->product_id,
+        'Tanggal_transaksi' => $request->Tanggal_transaksi,
+        'Nama_pembeli' => $request->Nama_pembeli,
+        'Jumlah_barang' => $request->Jumlah_barang,
+        'Total_pembayaran' => $total_payment,
+    ]);
 
-        return redirect()->route('transaksis.index')->with(['success' => 'Data Berhasil Disimpan!']);
-    }
+    // Kurangi stok produk
+    $product->stock -= $request->Jumlah_barang;
+    $product->save();
+
+    // Redirect dengan pesan sukses
+    return redirect()->route('transaksis.index')->with('success', 'Transaksi berhasil dibuat dan stok produk telah diperbarui.');
+}
     
     /**
      * show

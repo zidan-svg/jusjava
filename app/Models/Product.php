@@ -22,4 +22,10 @@ class Product extends Model
         'price',
         'stock',
     ];
+
+    public function transaksis()
+    {
+        return $this->hasMany(Transaksi::class);
+    }
+
 }
