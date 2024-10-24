@@ -112,7 +112,7 @@ class LaporanController extends Controller
         }
 
         //redirect to index
-        return redirect()->route('laporans.index')->with(['success' => 'Data Berhasil Diubah!']);
+        return redirect()->route('dashboard')->with(['success' => 'Data Berhasil Disimpan!']);
     }
     
     /**
@@ -130,6 +130,6 @@ class LaporanController extends Controller
         $laporan->delete();
 
         //redirect to index
-        return redirect()->route('laporans.index')->with(['success' => 'Data Berhasil Dihapus!']);
+        return redirect()->route('dashboard')->with(['success' => 'Data Berhasil Disimpan!']);
     }
 }

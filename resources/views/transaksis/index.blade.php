@@ -23,6 +23,7 @@
                 <div class="card border-0 shadow-sm rounded">
                     <div class="card-body">
                         <a href="{{ route('transaksis.create') }}" class="btn btn-md btn-success mb-3">Tambahkan Transaksi</a>
+                        <a href="{{ route('dashboard') }}" class="btn btn-md btn-success mb-3">Kembali ke dashboard</a>
                         <a href="{{ route('products.index') }}" class="btn btn-md btn-success mb-3">Produk</a>
                         <a href="{{ route('laporans.index') }}" class="btn btn-md btn-success mb-3">Laporan</a>
                         <table class="table table-bordered">
