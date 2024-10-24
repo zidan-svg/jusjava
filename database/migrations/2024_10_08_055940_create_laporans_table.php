@@ -11,6 +11,8 @@ return new class extends Migration
         Schema::create('laporans', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->foreignId('product_id')->constrained('products')->onDelete('cascade'); // Foreign key untuk produk            
+            $table->foreignId('transaksi_id')->constrained('transaksis')->onDelete('cascade'); // Foreign key untuk produk            
             $table->date('Tanggal');
             $table->bigInteger('Pendapatan');
             $table->bigInteger('Jumlah_barang');
