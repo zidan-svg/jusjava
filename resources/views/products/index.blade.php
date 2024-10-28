@@ -7,27 +7,43 @@
     <title>Data Produk</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-
+    <style>
+        body {
+            background-color: #f4f6f9;
+        }
+        .card {
+            border-radius: 15px;
+        }
+        .table-hover tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+        .btn-custom {
+            font-weight: bold;
+        }
+    </style>
 </head>
-<body style="background: lightgray">
+<body>
 
     <div class="container mt-5">
-        <div class="row">
-            <div class="col-md-12">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
                 <div>
                     <h3 class="text-center my-4">Sistem Manajemen Alat Pancing</h3>
-                    <h3 class="text-center my-4">Data Produk</h3>
-
+                    <h4 class="text-center mb-4 text-muted">Data Produk</h4>
                     <hr>
                 </div>
-                <div class="card border-0 shadow-sm rounded">
+                <div class="card shadow-sm">
                     <div class="card-body">
-                        <a href="{{ route('products.create') }}" class="btn btn-md btn-success mb-3">Tambahkan Produk</a>
-                        <a href="{{ route('dashboard') }}" class="btn btn-md btn-success mb-3">Kembali ke dashboard</a>
-                        <a href="{{ route('transaksis.index') }}" class="btn btn-md btn-success mb-3">Transaksi</a>
-                        <a href="{{ route('laporans.index') }}" class="btn btn-md btn-success mb-3">Laporan</a>
-                        <table class="table table-bordered">
-                            <thead>
+                        <div class="d-flex justify-content-between mb-3">
+                            <a href="{{ route('products.create') }}" class="btn btn-md btn-success btn-custom">+ Tambah Produk</a>
+                            <div>
+                                <a href="{{ route('dashboard') }}" class="btn btn-md btn-outline-secondary btn-custom">Dashboard</a>
+                                <a href="{{ route('transaksis.index') }}" class="btn btn-md btn-outline-info btn-custom">Transaksi</a>
+                                <a href="{{ route('laporans.index') }}" class="btn btn-md btn-outline-primary btn-custom">Laporan</a>
+                            </div>
+                        </div>
+                        <table class="table table-bordered table-hover">
+                            <thead class="table-dark">
                                 <tr>
                                     <th scope="col">Gambar</th>
                                     <th scope="col">Nama</th>
@@ -40,42 +56,42 @@
                                 @forelse ($products as $product)
                                     <tr>
                                         <td class="text-center">
-                                            <img src="{{ asset('storage/'.$product->image) }}" class="rounded" style="width: 150px">
+                                            <img src="{{ asset('storage/'.$product->image) }}" class="rounded" style="width: 100px; height: auto;">
                                         </td>
                                         <td>{{ $product->title }}</td>
                                         <td>{{ "Rp " . number_format($product->price,2,',','.') }}</td>
                                         <td>{{ $product->stock }}</td>
                                         <td class="text-center">
                                             <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('products.destroy', $product->id) }}" method="POST">
-                                                <a href="{{ route('products.show', $product->id) }}" class="btn btn-sm btn-dark">Lihat</a>
-                                                <a href="{{ route('products.edit', $product->id) }}" class="btn btn-sm btn-primary">Edit</a>
-                                                
+                                                <a href="{{ route('products.show', $product->id) }}" class="btn btn-sm btn-outline-dark me-1">Lihat</a>
+                                                <a href="{{ route('products.edit', $product->id) }}" class="btn btn-sm btn-outline-primary me-1">Edit</a>
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
+                                                <button type="submit" class="btn btn-sm btn-outline-danger">Hapus</button>
                                             </form>
                                         </td>
                                     </tr>
                                 @empty
-                                    <div class="alert alert-success">
-                                        Data Produk belum Tersedia.
-                                    </div>
+                                    <tr>
+                                        <td colspan="5" class="text-center">
+                                            <div class="alert alert-warning my-3">Data Produk belum Tersedia.</div>
+                                        </td>
+                                    </tr>
                                 @endforelse
                             </tbody>
                         </table>
-                        {{ $products->links() }}
+                        <div class="d-flex justify-content-center mt-3">
+                            {{ $products->links() }}
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
     <script>
-
          @if(session('success'))
             Swal.fire({
                 icon: "success",
@@ -93,7 +109,6 @@
                 timer: 2000
             });
         @endif
-
     </script>
 
 </body>
