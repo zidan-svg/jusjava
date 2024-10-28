@@ -6,11 +6,24 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Tambah Transaksi</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f4f6f9;
+        }
+        .form-title {
+            font-weight: 600;
+            color: #343a40;
+        }
+        .form-label {
+            font-weight: 500;
+            color: #495057;
+        }
+    </style>
 </head>
-<body style="background: lightgray">
+<body>
 
     <div class="container mt-5 mb-5">
-        <h3 class="text-center my-4">Tambahkan Transaksi</h3>
+        <h3 class="text-center my-4 form-title">Tambahkan Transaksi</h3>
 
         <div class="row">
             <div class="col-md-12">
@@ -20,7 +33,7 @@
                             @csrf
 
                             <div class="form-group mb-3">
-                                <label for="product_id">Pilih Produk</label>
+                                <label for="product_id" class="form-label">Pilih Produk</label>
                                 <select name="product_id" class="form-control" required>
                                     @foreach($products as $product)
                                         <option value="{{ $product->id }}">
@@ -31,17 +44,17 @@
                             </div>
 
                             <div class="form-group mb-3">
-                                <label for="Jumlah_barang">Jumlah Barang</label>
+                                <label for="Jumlah_barang" class="form-label">Jumlah Barang</label>
                                 <input type="number" name="Jumlah_barang" class="form-control" min="1" required>
                             </div>
 
                             <div class="form-group mb-3">
-                                <label for="Tanggal_transaksi">Tanggal Transaksi</label>
+                                <label for="Tanggal_transaksi" class="form-label">Tanggal Transaksi</label>
                                 <input type="date" name="Tanggal_transaksi" class="form-control" required>
                             </div>
 
                             <div class="form-group mb-4">
-                                <label for="Nama_pembeli">Nama Pembeli</label>
+                                <label for="Nama_pembeli" class="form-label">Nama Pembeli</label>
                                 <input type="text" name="Nama_pembeli" class="form-control" required>
                             </div>
 
@@ -55,9 +68,5 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
-    <script>
-        CKEDITOR.replace('description');
-    </script>
 </body>
 </html>
