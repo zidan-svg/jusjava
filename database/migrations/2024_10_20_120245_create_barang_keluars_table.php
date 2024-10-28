@@ -14,6 +14,10 @@ return new class extends Migration
         Schema::create('barang_keluars', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('Nama_barang');
+            $table->string('Jenis');
+            $table->integer('Jumlah');
+            $table->string('Deskripsi');
         });
     }
 
