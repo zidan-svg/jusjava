@@ -12,65 +12,55 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
-            background: linear-gradient(135deg, #ffcc80, #ffab40, #ff8a65); /* Gradien cerah */
+            background: linear-gradient(135deg, #ffd54f, #ffb300, #ff7043); /* Gradien lebih cerah */
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            overflow: hidden;
-            color: #ffffff; /* Warna teks putih untuk kontras */
-            position: relative;
-            font-family: 'Comic Sans MS', cursive, sans-serif; /* Font ceria */
+            color: #ffffff;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
         }
         .card {
-            padding: 20px;
-            border-radius: 20px;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-            background-color: rgba(255, 255, 255, 0.9); /* Latar belakang putih transparan */
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+            background-color: rgba(255, 255, 255, 0.95);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            position: relative;
-            z-index: 1; /* Menempatkan card di atas dekorasi */
         }
         .card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+            transform: scale(1.06);
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.35);
         }
         .btn-primary {
-            background-color: #ff5722; /* Warna oranye cerah */
-            border-color: #ff5722;
+            background-color: #ff6f00;
+            border-color: #ff6f00;
             transition: background-color 0.3s ease, transform 0.3s ease;
         }
         .btn-primary:hover {
-            background-color: #e64a19; /* Warna oranye lebih gelap */
-            transform: scale(1.1);
-        }
-        .fade-in {
-            animation: fadeIn 1s ease forwards;
-            opacity: 0;
-        }
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            background-color: #e65100;
+            transform: scale(1.12);
         }
         .fruit-icon {
-            font-size: 50px; /* Ukuran ikon buah yang lebih besar */
-            margin: 10px; /* Jarak antar ikon */
-            color: #ffeb3b; /* Warna kuning cerah untuk ikon */
-            animation: bounce 1s infinite; /* Animasi bounce */
+            font-size: 40px;
+            margin: 8px;
+            color: #ffd600;
+            animation: bounce 1.5s infinite;
         }
         @keyframes bounce {
             0%, 100% {
                 transform: translateY(0);
             }
             50% {
-                transform: translateY(-10px);
+                transform: translateY(-12px);
             }
+        }
+        .fade-in {
+            animation: fadeIn 1s ease forwards;
+            opacity: 0;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
@@ -80,17 +70,13 @@
             <div class="col-md-8">
                 <div class="card text-center animate__animated animate__fadeInDown">
                     <div class="card-body">
-                        <h1 class="card-title" style="color: #ff5722;">Selamat Datang di Halaman Admin</h1>
+                        <h1 class="card-title" style="color: #ff6f00;">Selamat Datang di Halaman Admin</h1>
                         <p class="card-text">
                             <i class="fas fa-apple-alt fruit-icon"></i>
-                            <i class="fas fa-banana fruit-icon"></i>
                             <i class="fas fa-lemon fruit-icon"></i>
                             <i class="fas fa-watermelon fruit-icon"></i>
                             <i class="fas fa-grapes fruit-icon"></i>
-                            <i class="fas fa-cherry-blossom fruit-icon"></i>
                             <i class="fas fa-orange fruit-icon"></i>
-                            <i class="fas fa-strawberry fruit-icon"></i>
-                            <i class="fas fa-pineapple fruit-icon"></i>
                             <i class="fas fa-peach fruit-icon"></i>
                         </p>
                         <p class="card-text" style="color: #4caf50;">Kelola data JavaJuice dengan mudah dan cepat.</p>
