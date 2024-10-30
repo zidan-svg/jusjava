@@ -18,7 +18,7 @@
             align-items: center;
             height: 100vh;
             overflow: hidden;
-            color: #ffffff; /* Warna teks putih untuk kontras */
+            color: rgb(255, 255, 255); /* Warna teks putih untuk kontras */
             position: relative;
             font-family: 'Comic Sans MS', cursive, sans-serif; /* Font ceria */
         }
