@@ -322,9 +322,9 @@ return [
         ],
         ['header' => 'Fitur'],
         [
-            'text' => 'Profile',
-            'url' => 'profile',
-            'icon' => 'fas fa-user',
+        'text' => 'Logout',
+        'url' => 'home',
+        'icon' => 'fas fa-sign-out-alt',
         ],
         [
             'text' => 'Manajemen Toko',
