@@ -65,8 +65,9 @@
             <table class="table table-bordered table-dark table-hover">
                 <thead>
                     <tr>
+                        <th scope="col">Produk</th>
                         <th scope="col">Tanggal Transaksi</th>
-                        <th scope="col">Jumlah Barang</th>
+                        <th scope="col">Jumlah produk</th>
                         <th scope="col">Total Pembayaran</th>
                         <th scope="col" style="width: 20%">Opsi</th>
                     </tr>
@@ -74,6 +75,7 @@
                 <tbody>
                     @forelse ($transaksis as $transaksi)
                         <tr>
+                            <td>{{ $transaksi->product->title }}</td>
                             <td>{{ $transaksi->Tanggal_transaksi }}</td>
                             <td>{{ $transaksi->Jumlah_barang }}</td>
                             <td>{{ 'Rp ' . number_format($transaksi->Total_pembayaran, 2, ',', '.') }}</td>
@@ -83,6 +85,7 @@
                                     <a href="{{ route('transaksis.edit', $transaksi->id) }}" class="btn btn-sm btn-primary">Edit</a>
                                     @csrf
                                     @method('DELETE')
+                                    <a href="{{ route('transaksis.batal', $transaksi->id) }}" class="btn btn-sm btn-outline-primary me-1">Batal</a>
                                     <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
                                 </form>
                             </td>

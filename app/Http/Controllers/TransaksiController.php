@@ -156,4 +156,30 @@ public function store(Request $request)
         //redirect to index
         return redirect()->route('dashboard')->with(['success' => 'Data Berhasil Disimpan!']);
     }
+
+    /**
+ * batal
+ *
+ * @param  mixed $id
+ * @return RedirectResponse
+ */
+public function batal($id): RedirectResponse
+{
+    // Ambil transaksi berdasarkan ID
+    $transaksi = transaksi::findOrFail($id);
+
+    // Ambil produk terkait transaksi
+    $product = Product::findOrFail($transaksi->product_id);
+
+    // Tambahkan kembali jumlah barang ke stok produk
+    $product->stock += $transaksi->Jumlah_barang;
+    $product->save();
+
+    // Hapus transaksi
+    $transaksi->delete();
+
+    // Redirect ke halaman transaksi dengan pesan sukses
+    return redirect()->route('transaksis.index')->with('success', 'Transaksi berhasil dibatalkan dan stok produk telah diperbarui.');
+}
+
 }
