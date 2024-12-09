@@ -31,4 +31,12 @@ Route::post('/register', [UserController::class,'register']);
 Route::post('/logout', [UserController::class,'logout']);
 Route::post('/login', [UserController::class,'login']);
 Route::get('/transaksis/{id}/batal', [TransaksiController::class, 'batal'])->name('transaksis.batal');
+Route::get('/transaksi/bayar/{id}', [TransaksiController::class, 'bayar'])->name('transaksis.bayar');
+Route::get('/check-midtrans-key', function () {
+    dd([
+        'Server Key' => env('MIDTRANS_SERVER_KEY'),
+        'Client Key' => env('MIDTRANS_CLIENT_KEY'),
+        'Is Production' => env('MIDTRANS_IS_PRODUCTION', false),
+    ]);
+});
 

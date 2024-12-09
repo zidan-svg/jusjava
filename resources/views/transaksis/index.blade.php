@@ -55,16 +55,18 @@
                             <tbody>
                                 @forelse ($transaksis as $transaksi)
                                     <tr>
-                                        <!-- Menggunakan relasi untuk menampilkan nama produk -->
                                         <td>{{ $transaksi->product->title }}</td>
                                         <td>{{ $transaksi->Tanggal_transaksi }}</td>
                                         <td>{{ $transaksi->Jumlah_barang }}</td>
                                         <td>{{ "Rp " . number_format($transaksi->Total_pembayaran,2,',','.') }}</td>
                                         <td class="text-center">
-                                            <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('transaksis.destroy', $transaksi->id) }}" method="POST">
+                                            <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('transaksis.destroy', $transaksi->id) }}" method="POST" style="display: inline-block;">
                                                 <a href="{{ route('transaksis.show', $transaksi->id) }}" class="btn btn-sm btn-outline-dark me-1">Lihat</a>
                                                 <a href="{{ route('transaksis.edit', $transaksi->id) }}" class="btn btn-sm btn-outline-primary me-1">Edit</a>
-                                                <a href="{{ route('transaksis.batal', $transaksi->id) }}" class="btn btn-sm btn-outline-primary me-1">Batal</a>
+                                                <a href="{{ route('transaksis.batal', $transaksi->id) }}" class="btn btn-sm btn-outline-warning me-1">Batal</a>
+                                                @if(!$transaksi->is_paid)
+                                                    <a href="{{ route('transaksis.bayar', $transaksi->id) }}" class="btn btn-sm btn-outline-success me-1">Bayar</a>
+                                                @endif
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-sm btn-outline-danger">Hapus</button>
@@ -92,7 +94,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-         @if(session('success'))
+        @if(session('success'))
             Swal.fire({
                 icon: "success",
                 title: "BERHASIL",
@@ -110,6 +112,5 @@
             });
         @endif
     </script>
-
 </body>
 </html>
