@@ -4,21 +4,21 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateLaporansTable extends Migration
 {
-    public function up(): void
+    public function up()
     {
         Schema::create('laporans', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->date('Tanggal');
-            $table->bigInteger('Pendapatan');
-            $table->bigInteger('Jumlah_barang');
+            $table->decimal('Pendapatan', 15, 2); // Maksimal 15 digit, 2 desimal
+            $table->timestamps();
         });
     }
-    public function down(): void
+
+    public function down()
     {
         Schema::dropIfExists('laporans');
     }
+}
 
-};

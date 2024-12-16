@@ -28,7 +28,7 @@
         <div class="row justify-content-center">
             <div class="col-md-10">
                 <div>
-                    <h3 class="text-center my-4">Sistem Manajemen Alat Pancing</h3>
+                    <h3 class="text-center my-4">Sistem Manajemen Java Juice</h3>
                     <h4 class="text-center mb-4 text-muted">Laporan</h4>
                     <hr>
                 </div>
@@ -37,6 +37,7 @@
                         <div class="d-flex justify-content-between mb-3">
                             <a href="{{ route('laporans.create') }}" class="btn btn-md btn-success btn-custom">+ Tambah Laporan</a>
                             <div>
+                                <button class="btn btn-md btn-outline-dark btn-custom me-2" onclick="printPage()">Print</button>
                                 <a href="{{ route('dashboard') }}" class="btn btn-md btn-outline-secondary btn-custom">Dashboard</a>
                                 <a href="{{ route('transaksis.index') }}" class="btn btn-md btn-outline-info btn-custom">Transaksi</a>
                                 <a href="{{ route('products.index') }}" class="btn btn-md btn-outline-primary btn-custom">Produk</a>
@@ -82,12 +83,17 @@
             </div>
         </div>
     </div>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
-         @if(session('success'))
+        // Fungsi untuk mencetak halaman
+        function printPage() {
+            window.print();
+        }
+
+        @if(session('success'))
             Swal.fire({
                 icon: "success",
                 title: "BERHASIL",

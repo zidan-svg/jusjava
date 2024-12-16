@@ -28,7 +28,7 @@
         <div class="row justify-content-center">
             <div class="col-md-10">
                 <div>
-                    <h3 class="text-center my-4">Sistem Manajemen Alat Pancing</h3>
+                    <h3 class="text-center my-4">Sistem Manajemen Java Juice</h3>
                     <h4 class="text-center mb-4 text-muted">Data Transaksi</h4>
                     <hr>
                 </div>
