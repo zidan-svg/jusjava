@@ -1,62 +1,56 @@
-@extends('adminlte::page')
+<!-- resources/views/barangkeluars/create.blade.php -->
 
-@section('title', 'Tambah Barang Keluar')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Barang Keluar</title>
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Create Barang Keluar</h1>
 
-@section('content')
-<div class="container mt-5">
-    <h2>Tambah Barang Keluar</h2>
-    <form action="{{ route('barangkeluars.store') }}" method="POST">
-        @csrf
-        <div class="mb-3">
-            <label for="nama_barang">Nama Barang</label>
-            <input 
-                type="text" 
-                name="nama_barang" 
-                id="nama_barang" 
-                class="form-control @error('nama_barang') is-invalid @enderror" 
-                value="{{ old('nama_barang') }}" 
-                required>
-            @error('nama_barang')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
-        </div>
-        <div class="mb-3">
-            <label for="jumlah">Jumlah</label>
-            <input 
-                type="number" 
-                name="jumlah" 
-                id="jumlah" 
-                class="form-control @error('jumlah') is-invalid @enderror" 
-                value="{{ old('jumlah') }}" 
-                required>
-            @error('jumlah')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
-        </div>
-        <div class="mb-3">
-            <label for="tanggal_keluar">Tanggal Keluar</label>
-            <input 
-                type="date" 
-                name="tanggal_keluar" 
-                id="tanggal_keluar" 
-                class="form-control @error('tanggal_keluar') is-invalid @enderror" 
-                value="{{ old('tanggal_keluar') }}" 
-                required>
-            @error('tanggal_keluar')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
-        </div>
-        <div class="mb-3">
-            <label for="keterangan">Keterangan</label>
-            <textarea 
-                name="keterangan" 
-                id="keterangan" 
-                class="form-control @error('keterangan') is-invalid @enderror">{{ old('keterangan') }}</textarea>
-            @error('keterangan')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
-        </div>
-        <button type="submit" class="btn btn-success">Simpan</button>
-    </form>
-</div>
-@endsection
+        <!-- Display success message -->
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        <!-- Display validation errors -->
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        <!-- Create barang keluar form -->
+        <form action="{{ route('barangkeluars.store') }}" method="POST">
+            @csrf
+
+            <div class="form-group">
+                <label for="name">Nama Barang:</label>
+                <input type="text" id="name" name="name" class="form-control" value="{{ old('name') }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="quantity">Jumlah:</label>
+                <input type="number" id="quantity" name="quantity" class="form-control" value="{{ old('quantity') }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="date">Tanggal:</label>
+                <input type="date" id="date" name="date" class="form-control" value="{{ old('date') }}" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

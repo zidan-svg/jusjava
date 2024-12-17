@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>liat laporan</title>
+    <title>liat barang</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body style="background: lightgray">
@@ -14,11 +14,13 @@
             <div class="col-md-8">
                 <div class="card border-0 shadow-sm rounded">
                     <div class="card-body">
-                        <h3>{{ $laporan->Tanggal }}</h3>
+                        <h3>{{ $barang->Nama_barang }}</h3>
                         <hr/>
-                        <p>{{ "Rp " . number_format($laporan->Pendapatan,2,',','.') }}</p>
+                        <p>Jenis barang : {{ $barang->Jenis }}</p>
                         <code>
-                        <p>Jumlah barang : {{ $laporan->Jumlah_barang }}</p>
+                            <p>{!! $barang->Deskripsi !!}</p>
+                        </code>
+                        <p>Jumlah barang : {{ $barang->Jumlah }}</p>
                     </div>
                 </div>
             </div>

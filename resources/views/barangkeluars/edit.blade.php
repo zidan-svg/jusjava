@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @extends('adminlte::page')
 
 @section('title', 'Tambah Barang Keluar')

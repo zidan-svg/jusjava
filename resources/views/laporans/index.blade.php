@@ -28,54 +28,60 @@
         <div class="row justify-content-center">
             <div class="col-md-10">
                 <div>
-                    <h3 class="text-center my-4">Sistem Manajemen Java Juice</h3>
+                    <h3 class="text-center my-4">Sistem Manajemen Alat Pancing</h3>
                     <h4 class="text-center mb-4 text-muted">Laporan</h4>
                     <hr>
                 </div>
                 <div class="card shadow-sm">
                     <div class="card-body">
                         <div class="d-flex justify-content-between mb-3">
-                            <a href="{{ route('laporans.create') }}" class="btn btn-md btn-success btn-custom">+ Tambah Laporan</a>
+                            <form action="{{ route('laporans.index') }}" method="GET" class="mb-3">
+                                <label for="month" class="form-label">Pilih Bulan:</label>
+                                <select name="month" id="month" class="form-control">
+                                    @foreach(range(1, 12) as $m)
+                                        <option value="{{ $m }}" {{ isset($month) && $m == $month ? 'selected' : '' }}>
+                                            {{ date('F', mktime(0, 0, 0, $m, 1)) }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <button type="submit" class="btn btn-primary mt-2">Filter</button>
+                            </form>
                             <div>
-                                <button class="btn btn-md btn-outline-dark btn-custom me-2" onclick="printPage()">Print</button>
                                 <a href="{{ route('dashboard') }}" class="btn btn-md btn-outline-secondary btn-custom">Dashboard</a>
                                 <a href="{{ route('transaksis.index') }}" class="btn btn-md btn-outline-info btn-custom">Transaksi</a>
                                 <a href="{{ route('products.index') }}" class="btn btn-md btn-outline-primary btn-custom">Produk</a>
+                                <a href="{{ route('laporans.create') }}" class="btn btn-md btn-outline-success btn-custom">Tambah Laporan</a>
                             </div>
                         </div>
-                        <table class="table table-bordered table-hover">
-                            <thead class="table-dark">
+                        <table class="table table-bordered">
+                            <thead>
                                 <tr>
-                                    <th scope="col">Tanggal</th>
-                                    <th scope="col">Pendapatan</th>
-                                    <th scope="col" style="width: 20%">Opsi</th>
+                                    <th>Tanggal</th>
+                                    <th>Pendapatan</th>
+                                    <th>Jumlah Barang</th>
+                                    <th>Opsi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($laporans as $laporan)
+                                @forelse($laporans as $laporan)
                                     <tr>
-                                        <td>{{ $laporan->Tanggal }}</td>
-                                        <td>{{ "Rp " . number_format($laporan->Pendapatan,2,',','.') }}</td>
-                                        <td class="text-center">
-                                            <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('laporans.destroy', $laporan->id) }}" method="POST">
-                                                <a href="{{ route('laporans.show', $laporan->id) }}" class="btn btn-sm btn-outline-dark me-1">Lihat</a>
-                                                <a href="{{ route('laporans.edit', $laporan->id) }}" class="btn btn-sm btn-outline-primary me-1">Edit</a>
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-outline-danger">Hapus</button>
-                                            </form>
+                                        <td>{{ $laporan->Tanggal ?? date('Y-m-d') }}</td>
+                                        <td>{{ isset($laporan->Pendapatan) ? number_format($laporan->Pendapatan, 0, ',', '.') : '0' }}</td>
+                                        <td>{{ $laporan->Jumlah_barang ?? '0' }}</td>
+                                        <td>
+                                            <a href="{{ route('laporans.show', $laporan->id) }}" class="btn btn-sm btn-info">Detail</a>
                                         </td>
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="3" class="text-center">
-                                            <div class="alert alert-warning my-3">Data laporan belum tersedia.</div>
-                                        </td>
+                                        <td colspan="4" class="text-center">Tidak ada data untuk bulan ini.</td>
                                     </tr>
                                 @endforelse
                             </tbody>
                         </table>
-                        <div class="d-flex justify-content-center mt-3">
+
+                        <!-- Tampilkan pagination -->
+                        <div class="mt-3">
                             {{ $laporans->links() }}
                         </div>
                     </div>
@@ -83,16 +89,11 @@
             </div>
         </div>
     </div>
-
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
-        // Fungsi untuk mencetak halaman
-        function printPage() {
-            window.print();
-        }
-
         @if(session('success'))
             Swal.fire({
                 icon: "success",
