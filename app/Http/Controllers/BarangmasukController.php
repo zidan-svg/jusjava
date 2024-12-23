@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Barang_masuk; 
+use App\Models\BarangMasuk; 
 
 use Illuminate\View\View;
 
@@ -16,33 +16,33 @@ class BarangmasukController extends Controller
 {
     public function index() : View
     {
-        $barangmasuks = Barang_masuk::latest()->paginate(10);
+        $barang_masuks = BarangMasuk::latest()->paginate(10);
 
-        return view('barangmasuks.index', compact('barangmasuks'));
+        return view('barang_masuks.index', compact('barang_masuks'));
     }
     public function create(): View
     {
-        return view('barangmasuks.create');
+        return view('barang_masuks.create');
     }
 
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'Nama_barang'        => 'required|min:1',
-            'Jenis'              => 'required|min:1',
-            'Jumlah'             => 'required|numeric',
-            'Deskripsi'          => 'required|min:1'
+            'Nama_barang'         => 'required|min:1',
+            'Jenis'   => 'required|min:1',
+            'Jumlah'         => 'required|numeric',
+            'Deskripsi'         => 'required|min:1'
         ]);
 
         //create product
-        Barang_masuk::create([
-            'Nama_barang'                  => $request->Nama_barang,
-            'Jenis'                        => $request->Jenis,
-            'Jumlah'                => $request->Jumlah,
-            'Deskripsi'             => $request->Deskripsi
+        BarangMasuk::create([
+            'Nama_barang'         => $request->Nama_barang,
+            'Jenis'   => $request->Jenis,
+            'Jumlah'         => $request->Jumlah,
+            'Deskripsi'         => $request->Deskripsi
         ]);
 
-        return redirect()->route('barangmasuks.index')->with(['success' => 'Data Berhasil Disimpan!']);
+        return redirect()->route('barang_masuks.index')->with(['success' => 'Data Berhasil Disimpan!']);
     }
     
     /**
@@ -53,11 +53,11 @@ class BarangmasukController extends Controller
      */
     public function show(string $id): View
     {
-        //get product by ID
-        $barangmasuk = Barang_masuk::findOrFail($id);
+        //get barang by ID
+        $barang_masuk = BarangMasuk::findOrFail($id);
 
         //render view with product
-        return view('barangmasuks.show', compact('barangmasuk'));
+        return view('barang_masuks.show', compact('barang_masuk'));
     }
     
     /**
@@ -69,10 +69,10 @@ class BarangmasukController extends Controller
     public function edit(string $id): View
     {
         //get product by ID
-        $barangmasuk = Barang_masuk::findOrFail($id);
+        $barang_masuk = BarangMasuk::findOrFail($id);
 
         //render view with product
-        return view('barangmasuks.edit', compact('barangmasuk'));
+        return view('barang_masuks.edit', compact('barang_masuk'));
     }
         
     /**
@@ -86,37 +86,28 @@ class BarangmasukController extends Controller
     {
         //validate form
         $request->validate([
-            'Nama_barang'        => 'required|min:1',
-            'Jenis'              => 'required|min:1',
-            'Jumlah'             => 'required|numeric',
-            'Deskripsi'          => 'required|min:1'
+            'Nama_barang'         => 'required|min:1',
+            'Jenis'   => 'required|min:1',
+            'Jumlah'         => 'required|numeric',
+            'Deskripsi'         => 'required|min:1'
         ]);
 
         //get product by ID
-        $barangmasuk = Barang_masuk::findOrFail($id);
+        $barang_masuk = BarangMasuk::findOrFail($id);
 
-        if ($request) {
+        //check if image is uploaded
 
 
-            $barangmasuk->update([
-                'Nama_barang'                  => $request->Nama_barang,
-                'Jenis'                        => $request->Jenis,
-                'Jumlah'                => $request->Jumlah,
-                'Deskripsi'             => $request->Deskripsi
-                            ]);
-
-        } else {
-
-            $barangmasuk->update([
-                'Nama_barang'                  => $request->Nama_barang,
-                'Jenis'                        => $request->Jenis,
-                'Jumlah'                => $request->Jumlah,
-                'Deskripsi'             => $request->Deskripsi
-                            ]);
-        }
+            //upload new image
+            $barang_masuk->update([
+                'Nama_barang'         => $request->Nama_barang,
+                'Jenis'   => $request->Jenis,
+                'Jumlah'         => $request->Jumlah,
+                'Deskripsi'         => $request->Deskripsi
+                ]);
 
         //redirect to index
-        return redirect()->route('barangmasuks.index')->with(['success' => 'Data Berhasil Diubah!']);
+        return redirect()->route('barang_masuks.index')->with(['success' => 'Data Berhasil Disimpan!']);
     }
     
     /**
@@ -128,12 +119,13 @@ class BarangmasukController extends Controller
     public function destroy($id): RedirectResponse
     {
         //get product by ID
-        $barangmasuk = Barang_masuk::findOrFail($id);
+        $barang_masuk = BarangMasuk::findOrFail($id);
 
-        //delete laporan
-        $barangmasuk->delete();
+
+        //delete product
+        $barang_masuk->delete();
 
         //redirect to index
-        return redirect()->route('barangs.index')->with(['success' => 'Data Berhasil Dihapus!']);
+        return redirect()->route('barang_masuks.index')->with(['success' => 'Data Berhasil Disimpan!']);
     }
 }

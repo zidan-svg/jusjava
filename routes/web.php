@@ -6,6 +6,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\BarangController;
+use App\Http\Controllers\BarangmasukController;
 use App\Http\Controllers\BarangKeluarController;
 // Rute untuk halaman utama
 
@@ -16,6 +18,8 @@ Route::resource('barangkeluars', BarangKeluarController::class);
 Route::resource('/products', ProductController::class);
 Route::resource('/transaksis', TransaksiController::class);
 Route::resource('/laporans', LaporanController::class);
+Route::resource('/barangs', BarangController::class);
+Route::resource('/barang_masuks', BarangmasukController::class);
 
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');

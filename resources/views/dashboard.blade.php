@@ -55,11 +55,11 @@
         </div>
     </div>
 
-    {{-- Card Barang Keluar --}}
+    {{-- Card Barang --}}
     <div class="card bg-dark text-white mb-4">
         <div class="card-header d-flex justify-content-between align-items-center">
-            <h3 class="card-title">Barang Keluar</h3>
-            <a href="{{ route('barangkeluars.create') }}" class="btn btn-sm btn-success">Tambah Barang Keluar</a>
+            <h3 class="card-title">Barang</h3>
+            <a href="{{ route('barangs.create') }}" class="btn btn-sm btn-success">Tambah Barang</a>
         </div>
         <div class="card-body">
             <table class="table table-bordered table-dark table-hover">
@@ -72,15 +72,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($barangkeluars as $barangkeluar)
+                    @forelse ($barangs as $barang)
                         <tr>
-                            <td>{{ $barangkeluar->nama_barang }}</td>
-                            <td>{{ $barangkeluar->jumlah }}</td>
-                            <td>{{ $barangkeluar->tanggal_keluar }}</td>
+                            <td>{{ $barangkeluar->Nama_barang }}</td>
+                            <td>{{ $barangkeluar->Jenis }}</td>
+                            <td>{{ $barangkeluar->Jumlah }}</td>
                             <td class="text-center">
-                                <form action="{{ route('barangkeluars.destroy', $barangkeluar->id) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('Apakah Anda yakin ingin menghapus barang keluar ini?');">
-                                    <a href="{{ route('barangkeluars.show', $barangkeluar->id) }}" class="btn btn-sm btn-dark">Lihat</a>
-                                    <a href="{{ route('barangkeluars.edit', $barangkeluar->id) }}" class="btn btn-sm btn-primary">Edit</a>
+                                <form action="{{ route('barangs.destroy', $barang->id) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('Apakah Anda yakin ingin menghapus barang keluar ini?');">
+                                    <a href="{{ route('barangs.show', $barang->id) }}" class="btn btn-sm btn-dark">Lihat</a>
+                                    <a href="{{ route('barangs.edit', $barang->id) }}" class="btn btn-sm btn-primary">Edit</a>
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
@@ -98,7 +98,50 @@
             </table>
         </div>
     </div>
-
+    
+    {{-- Card Barang Masuk --}}
+    <div class="card bg-dark text-white mb-4">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h3 class="card-title">Barang Masuk</h3>
+            <a href="{{ route('barang_masuks.create') }}" class="btn btn-sm btn-success">Tambah Barang Masuk</a>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered table-dark table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Nama Barang</th>
+                        <th scope="col">Jumlah</th>
+                        <th scope="col">Tanggal Keluar</th>
+                        <th scope="col" style="width: 20%">Opsi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse ($barang_masuks as $barang_masuk)
+                        <tr>
+                            <td>{{ $barang_masuk->Nama_barang }}</td>
+                            <td>{{ $barang_masuk->Jenis }}</td>
+                            <td>{{ $barang_masuk->Jumlah }}</td>
+                            <td class="text-center">
+                                <form action="{{ route('barang_masuks.destroy', $barang_masuk->id) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('Apakah Anda yakin ingin menghapus barang keluar ini?');">
+                                    <a href="{{ route('barang_masuks.show', $barang_masuk->id) }}" class="btn btn-sm btn-dark">Lihat</a>
+                                    <a href="{{ route('barang_masuks.edit', $barang_masuk->id) }}" class="btn btn-sm btn-primary">Edit</a>
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
+                                </form>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="4" class="text-center">
+                                <div class="alert alert-success">Data Barang Keluar belum tersedia.</div>
+                            </td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+    </div>
     {{-- Card Transaksi --}}
     <div class="card bg-dark text-white mb-4">
         <div class="card-header d-flex justify-content-between align-items-center">

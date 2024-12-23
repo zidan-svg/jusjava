@@ -69,7 +69,7 @@
         <div class="header">
             <h1>Kelola Barang</h1>
             <p>Di sini Anda dapat menambah, mengedit, atau menghapus data barang.</p>
-            <a href="{{ url()->previous() }}" class="btn btn-secondary btn-custom">Kembali ke Dashboard</a>
+            <a href="{{route('dashboard') }}" class="btn btn-secondary btn-custom">Kembali ke Dashboard</a>
         </div>
 
         <div class="row">
@@ -94,11 +94,12 @@
                                 @forelse ($barangs as $barang)
                                     <tr>
                                         <td>{{ $barang->id }}</td>
-                                        <td>{{ $barang->nama }}</td>
-                                        <td>{{ $barang->jenis }}</td>
-                                        <td>{{ $barang->jumlah }}</td>
+                                        <td>{{ $barang->Nama_barang }}</td>
+                                        <td>{{ $barang->Jenis }}</td>
+                                        <td>{{ $barang->Jumlah }}</td>
                                         <td class="text-center">
                                             <a href="{{ route('barangs.edit', $barang->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                            <a href="{{ route('barangs.show', $barang->id) }}" class="btn btn-primary btn-sm">Lihat</a>
                                             <form onsubmit="return confirm('Apakah Anda yakin ingin menghapus?');" action="{{ route('barangs.destroy', $barang->id) }}" method="POST" style="display:inline;">
                                                 @csrf
                                                 @method('DELETE')

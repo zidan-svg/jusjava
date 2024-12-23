@@ -16,7 +16,7 @@ class BarangController extends Controller
 {
     public function index() : View
     {
-        $barangs = barang::latest()->paginate(10);
+        $barangs = Barang::latest()->paginate(10);
 
         return view('barangs.index', compact('barangs'));
     }
@@ -28,18 +28,18 @@ class BarangController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'Nama_barang'        => 'required|min:1',
-            'Jenis'              => 'required|min:1',
-            'Jumlah'             => 'required|numeric',
-            'Deskripsi'          => 'required|min:1'
+            'Nama_barang'         => 'required|min:1',
+            'Jenis'   => 'required|min:1',
+            'Jumlah'         => 'required|numeric',
+            'Deskripsi'         => 'required|min:1'
         ]);
 
         //create product
-        barang::create([
-            'Nama_barang'                  => $request->Nama_barang,
-            'Jenis'                        => $request->Jenis,
-            'Jumlah'                => $request->Jumlah,
-            'Deskripsi'             => $request->Deskripsi
+        Barang::create([
+            'Nama_barang'         => $request->Nama_barang,
+            'Jenis'   => $request->Jenis,
+            'Jumlah'         => $request->Jumlah,
+            'Deskripsi'         => $request->Deskripsi
         ]);
 
         return redirect()->route('barangs.index')->with(['success' => 'Data Berhasil Disimpan!']);
@@ -53,8 +53,8 @@ class BarangController extends Controller
      */
     public function show(string $id): View
     {
-        //get product by ID
-        $barang = barang::findOrFail($id);
+        //get barang by ID
+        $barang = Barang::findOrFail($id);
 
         //render view with product
         return view('barangs.show', compact('barang'));
@@ -69,7 +69,7 @@ class BarangController extends Controller
     public function edit(string $id): View
     {
         //get product by ID
-        $barang = barang::findOrFail($id);
+        $barang = Barang::findOrFail($id);
 
         //render view with product
         return view('barangs.edit', compact('barang'));
@@ -86,37 +86,28 @@ class BarangController extends Controller
     {
         //validate form
         $request->validate([
-            'Nama_barang'        => 'required|min:1',
-            'Jenis'              => 'required|min:1',
-            'Jumlah'             => 'required|numeric',
-            'Deskripsi'          => 'required|min:1'
+            'Nama_barang'         => 'required|min:1',
+            'Jenis'   => 'required|min:1',
+            'Jumlah'         => 'required|numeric',
+            'Deskripsi'         => 'required|min:1'
         ]);
 
         //get product by ID
-        $barang = barang::findOrFail($id);
+        $barang = Barang::findOrFail($id);
 
-        if ($request) {
+        //check if image is uploaded
 
 
+            //upload new image
             $barang->update([
-                'Nama_barang'                  => $request->Nama_barang,
-                'Jenis'                        => $request->Jenis,
-                'Jumlah'                => $request->Jumlah,
-                'Deskripsi'             => $request->Deskripsi
-                            ]);
-
-        } else {
-
-            $barang->update([
-                'Nama_barang'                  => $request->Nama_barang,
-                'Jenis'                        => $request->Jenis,
-                'Jumlah'                => $request->Jumlah,
-                'Deskripsi'             => $request->Deskripsi
-                            ]);
-        }
+                'Nama_barang'         => $request->Nama_barang,
+                'Jenis'   => $request->Jenis,
+                'Jumlah'         => $request->Jumlah,
+                'Deskripsi'         => $request->Deskripsi
+                ]);
 
         //redirect to index
-        return redirect()->route('barangs.index')->with(['success' => 'Data Berhasil Diubah!']);
+        return redirect()->route('barangs.index')->with(['success' => 'Data Berhasil Disimpan!']);
     }
     
     /**
@@ -128,12 +119,13 @@ class BarangController extends Controller
     public function destroy($id): RedirectResponse
     {
         //get product by ID
-        $barang = barang::findOrFail($id);
+        $barang = Barang::findOrFail($id);
 
-        //delete laporan
+
+        //delete product
         $barang->delete();
 
         //redirect to index
-        return redirect()->route('barangs.index')->with(['success' => 'Data Berhasil Dihapus!']);
+        return redirect()->route('barangs.index')->with(['success' => 'Data Berhasil Disimpan!']);
     }
 }

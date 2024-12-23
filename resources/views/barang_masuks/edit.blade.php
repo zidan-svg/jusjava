@@ -14,14 +14,14 @@
             <div class="col-md-12">
                 <div class="card border-0 shadow-sm rounded">
                     <div class="card-body">
-                        <form action="{{ route('barangmasuks.update', $barangmasuk->id) }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('barang_masuks.update', $barang_masuk->id) }}" method="POST" enctype="multipart/form-data">
                         
                             @csrf
                             @method('PUT')
 
                             <div class="form-group mb-3">
                                 <label class="font-weight-bold">Nama barang</label>
-                                <input type="text" class="form-control @error('Nama_barang') is-invalid @enderror" value="{{ old('Nama_barang', $barangmasuk->Nama_barang) }}" name="Nama_barang">
+                                <input type="text" class="form-control @error('Nama_barang') is-invalid @enderror" value="{{ old('Nama_barang', $barang_masuk->Nama_barang) }}" name="Nama_barang">
                             
                                 <!-- error message untuk image -->
                                 @error('Nama_barang')
@@ -34,7 +34,7 @@
                             <div class="col-md-6">
                                     <div class="form-group mb-3">
                                         <label class="font-weight-bold">Jenis</label>
-                                        <input type="text" class="form-control @error('Jenis') is-invalid @enderror" name="Jenis" value="{{ old('Jenis', $barangmasuk->Jenis) }}" placeholder="Masukkan Jenis">
+                                        <input type="text" class="form-control @error('Jenis') is-invalid @enderror" name="Jenis" value="{{ old('Jenis', $barang_masuk->Jenis) }}" placeholder="Masukkan Jenis">
                                     
                                         <!-- error message untuk stock -->
                                         @error('Jenis')
@@ -48,7 +48,7 @@
 
                             <div class="form-group mb-3">
                                 <label class="font-weight-bold">Jumlah</label>
-                                <input type="number" class="form-control @error('Jumlah') is-invalid @enderror" name="Jumlah" value="{{ old('Jumlah', $barangmasuk->Jumlah) }}" placeholder="Masukkan Jumlah">
+                                <input type="number" class="form-control @error('Jumlah') is-invalid @enderror" name="Jumlah" value="{{ old('Jumlah', $barang_masuk->Jumlah) }}" placeholder="Masukkan Jumlah">
                             
                                 <!-- error message untuk title -->
                                 @error('Jumlah')
@@ -60,7 +60,7 @@
 
                             <div class="form-group mb-3">
                                 <label class="font-weight-bold">Deskripsi</label>
-                                <input type="text" class="form-control @error('Deskripsi') is-invalid @enderror" name="Deskripsi" value="{{ old('Deskripsi', $barangmasuk->Deskripsi) }}" placeholder="Masukkan Deskripsi">
+                                <input type="text" class="form-control @error('Deskripsi') is-invalid @enderror" name="Deskripsi" value="{{ old('Deskripsi', $barang_masuk->Deskripsi) }}" placeholder="Masukkan Deskripsi">
                             
                                 <!-- error message untuk title -->
                                 @error('Deskripsi')

@@ -14,13 +14,13 @@
             <div class="col-md-8">
                 <div class="card border-0 shadow-sm rounded">
                     <div class="card-body">
-                        <h3>{{ $barangmasuk->Nama_barang }}</h3>
+                        <h3>{{ $barang_masuk->Nama_barang }}</h3>
                         <hr/>
-                        <p>Jenis barang : {{ $barangmasuk->Jenis }}</p>
+                        <p>Jenis barang : {{ $barang_masuk->Jenis }}</p>
                         <code>
-                            <p>{!! $barangmasuk->Deskripsi !!}</p>
+                            <p>{!! $barang_masuk->Deskripsi !!}</p>
                         </code>
-                        <p>Jumlah barang : {{ $barangmasuk->Jumlah }}</p>
+                        <p>Jumlah barang : {{ $barang_masuk->Jumlah }}</p>
                     </div>
                 </div>
             </div>

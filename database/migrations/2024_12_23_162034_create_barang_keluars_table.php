@@ -16,7 +16,7 @@ return new class extends Migration
             $table->timestamps();
             $table->string('Nama_barang');
             $table->string('Jenis');
-            $table->integer('Jumlah');
+            $table->bigInteger('Jumlah');
             $table->string('Deskripsi');
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('barang_keluars');
+        Schema::dropIfExists('barangs');
     }
 };

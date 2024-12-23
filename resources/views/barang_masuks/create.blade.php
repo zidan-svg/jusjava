@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Tambah Barang Masuk</title>
+    <title>Tambah Barang</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body style="background: lightgray">
@@ -18,13 +18,13 @@
             <div class="col-md-12">
                 <div class="card border-0 shadow-sm rounded">
                     <div class="card-body">
-                        <form action="{{ route('barangmasuks.store') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('barang_masuks.store') }}" method="POST" enctype="multipart/form-data">
                         
                             @csrf
 
                             <div class="form-group mb-3">
                                 <label class="font-weight-bold">Nama barang</label>
-                                <input type="text" class="form-control @error('Nama_barang') is-invalid @enderror" value="{{ old('Nama_barang') }}" name="Nama_barang" placeholder="Masukkan Nama barang masuk">
+                                <input type="text" class="form-control @error('Nama_barang') is-invalid @enderror" value="{{ old('Nama_barang') }}" name="Nama_barang" placeholder="Masukkan Nama barang">
                             
                                 <!-- error message untuk image -->
                                 @error('Nama_barang')

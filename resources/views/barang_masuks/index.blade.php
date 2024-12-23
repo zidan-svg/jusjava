@@ -68,18 +68,18 @@
     <div class="container mt-5">
         <div class="header">
             <h1>Kelola Barang Masuk</h1>
-            <p>Di sini Anda dapat menambah, mengedit, atau menghapus data barang masuk.</p>
-            <a href="{{ url()->previous() }}" class="btn btn-secondary btn-custom">Kembali ke Dashboard</a>
+            <p>Di sini Anda dapat menambah, mengedit, atau menghapus data barang.</p>
+            <a href="{{route('dashboard') }}" class="btn btn-secondary btn-custom">Kembali ke Dashboard</a>
         </div>
 
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5 class="card-title">Daftar Barang Masuk</h5>
+                        <h5 class="card-title">Daftar Barang</h5>
                     </div>
                     <div class="card-body">
-                        <a href="{{ route('barangmasuks.create') }}" class="btn btn-success btn-custom">Tambah Barang Masuk</a>
+                        <a href="{{ route('barang_masuks.create') }}" class="btn btn-success btn-custom">Tambah Barang Masuk</a>
                         <table class="table table-bordered mt-3">
                             <thead>
                                 <tr>
@@ -91,15 +91,16 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($barangmasuks as $barangmasuk)
+                                @forelse ($barang_masuks as $barang_masuk)
                                     <tr>
-                                        <td>{{ $barangmasuk->id }}</td>
-                                        <td>{{ $barangmasuk->nama }}</td>
-                                        <td>{{ $barangmasuk->jenis }}</td>
-                                        <td>{{ $barangmasuk->jumlah }}</td>
+                                        <td>{{ $barang_masuk->id }}</td>
+                                        <td>{{ $barang_masuk->Nama_barang }}</td>
+                                        <td>{{ $barang_masuk->Jenis }}</td>
+                                        <td>{{ $barang_masuk->Jumlah }}</td>
                                         <td class="text-center">
-                                            <a href="{{ route('barangmasuks.edit', $barangmasuk->id) }}" class="btn btn-primary btn-sm">Edit</a>
-                                            <form onsubmit="return confirm('Apakah Anda yakin ingin menghapus?');" action="{{ route('barangmasuks.destroy', $barangmasuk->id) }}" method="POST" style="display:inline;">
+                                            <a href="{{ route('barang_masuks.edit', $barang_masuk->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                            <a href="{{ route('barang_masuks.show', $barang_masuk->id) }}" class="btn btn-primary btn-sm">Lihat</a>
+                                            <form onsubmit="return confirm('Apakah Anda yakin ingin menghapus?');" action="{{ route('barang_masuks.destroy', $barang_masuk->id) }}" method="POST" style="display:inline;">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
@@ -108,12 +109,12 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="5" class="text-center">Tidak ada data barang masuk.</td>
+                                        <td colspan="5" class="text-center">Tidak ada data barang.</td>
                                     </tr>
                                 @endforelse
                             </tbody>
                         </table>
-                        {{ $barangmasuks->links() }} <!-- Pagination -->
+                        {{ $barang_masuks->links() }} <!-- Pagination -->
                     </div>
                 </div>
             </div>
