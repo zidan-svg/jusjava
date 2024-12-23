@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product; // Pastikan model Product sudah di-import
 use App\Models\transaksi;
 use App\Models\laporan;
-use App\Models\Barang;
-use App\Models\BarangMasuk;
+use App\Models\Barangkeluar;
 
 class DashboardController extends Controller
 {
@@ -15,9 +14,8 @@ class DashboardController extends Controller
         $products = Product::all();
         $transaksis = Transaksi::all();
         $laporans = Laporan::all();
-        $barangs = Barang::all();
-        $barang_masuks = BarangMasuk::all();
+        $barangkeluars = BarangKeluar::all();  // Assuming BarangKeluar is the correct model
     
-        return view('dashboard', compact('products', 'transaksis', 'laporans', 'barangs', 'barang_masuks'));
+        return view('dashboard', compact('products', 'transaksis', 'laporans', 'barangkeluars'));
     }
 }    

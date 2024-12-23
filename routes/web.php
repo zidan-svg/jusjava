@@ -20,6 +20,7 @@ Route::resource('/transaksis', TransaksiController::class);
 Route::resource('/laporans', LaporanController::class);
 Route::resource('/barangs', BarangController::class);
 Route::resource('/barang_masuks', BarangmasukController::class);
+Route::resource('/barang_keluars', BarangKeluarController::class);
 
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
