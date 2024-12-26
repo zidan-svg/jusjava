@@ -28,7 +28,11 @@
         <div class="row justify-content-center">
             <div class="col-md-10">
                 <div>
+<<<<<<< HEAD
                     <h3 class="text-center my-4">Sistem Manajemen Alat Pancing</h3>
+=======
+                    <h3 class="text-center my-4">Sistem Manajemen Java Juice</h3>
+>>>>>>> master
                     <h4 class="text-center mb-4 text-muted">Data Produk</h4>
                     <hr>
                 </div>
@@ -56,7 +60,11 @@
                                 @forelse ($products as $product)
                                     <tr>
                                         <td class="text-center">
+<<<<<<< HEAD
                                             <img src="{{ asset('/storage/'.$product->image) }}" class="rounded" style="width: 100px; height: auto;">
+=======
+                                            <img src="{{ asset('storage/'.$product->image) }}" class="rounded" style="width: 100px; height: auto;">
+>>>>>>> master
                                         </td>
                                         <td>{{ $product->title }}</td>
                                         <td>{{ "Rp " . number_format($product->price,2,',','.') }}</td>

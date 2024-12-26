@@ -47,7 +47,11 @@
 </script>
 @endpush
 
+<<<<<<< HEAD
 {{-- Add CSS styling --}}
+=======
+{{-- Add CSS styling for beautify option --}}
+>>>>>>> master
 
 @isset($beautify)
     @push('css')
@@ -59,3 +63,23 @@
     </style>
     @endpush
 @endisset
+<<<<<<< HEAD
+=======
+
+{{-- Improve CSS styling when using responsive extension --}}
+
+@if(! empty($config['responsive']))
+    @once
+    @push('css')
+    <style type="text/css">
+        .dataTable .child .dtr-details {
+            width: 100%;
+        }
+        .dataTable .child .dtr-data {
+            float: right;
+        }
+    </style>
+    @endpush
+    @endonce
+@endif
+>>>>>>> master

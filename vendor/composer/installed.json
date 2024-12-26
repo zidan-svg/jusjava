@@ -1325,6 +1325,7 @@
         },
         {
             "name": "jeroennoten/laravel-adminlte",
+<<<<<<< HEAD
             "version": "v3.14.1",
             "version_normalized": "3.14.1.0",
             "source": {
@@ -1336,6 +1337,19 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/jeroennoten/Laravel-AdminLTE/zipball/4dafd7931e0971ed75cca2efe052d891c783c1dd",
                 "reference": "4dafd7931e0971ed75cca2efe052d891c783c1dd",
+=======
+            "version": "v3.14.2",
+            "version_normalized": "3.14.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jeroennoten/Laravel-AdminLTE.git",
+                "reference": "dfd6b46be4a1c43338dfa1eb312030604ad95ef8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jeroennoten/Laravel-AdminLTE/zipball/dfd6b46be4a1c43338dfa1eb312030604ad95ef8",
+                "reference": "dfd6b46be4a1c43338dfa1eb312030604ad95ef8",
+>>>>>>> master
                 "shasum": ""
             },
             "require": {
@@ -1347,7 +1361,11 @@
                 "orchestra/testbench": ">=4.0",
                 "phpunit/phpunit": ">=9.1"
             },
+<<<<<<< HEAD
             "time": "2024-10-15T18:40:40+00:00",
+=======
+            "time": "2024-11-09T16:13:13+00:00",
+>>>>>>> master
             "type": "library",
             "extra": {
                 "laravel": {
@@ -1381,7 +1399,11 @@
             ],
             "support": {
                 "issues": "https://github.com/jeroennoten/Laravel-AdminLTE/issues",
+<<<<<<< HEAD
                 "source": "https://github.com/jeroennoten/Laravel-AdminLTE/tree/v3.14.1"
+=======
+                "source": "https://github.com/jeroennoten/Laravel-AdminLTE/tree/v3.14.2"
+>>>>>>> master
             },
             "install-path": "../jeroennoten/laravel-adminlte"
         },

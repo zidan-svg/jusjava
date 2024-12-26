@@ -35,11 +35,26 @@
                 <div class="card shadow-sm">
                     <div class="card-body">
                         <div class="d-flex justify-content-between mb-3">
+<<<<<<< HEAD
                             <a href="{{ route('laporans.create') }}" class="btn btn-md btn-success btn-custom">+ Tambah Laporan</a>
+=======
+                            <form action="{{ route('laporans.index') }}" method="GET" class="mb-3">
+                                <label for="month" class="form-label">Pilih Bulan:</label>
+                                <select name="month" id="month" class="form-control">
+                                    @foreach(range(1, 12) as $m)
+                                        <option value="{{ $m }}" {{ isset($month) && $m == $month ? 'selected' : '' }}>
+                                            {{ date('F', mktime(0, 0, 0, $m, 1)) }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <button type="submit" class="btn btn-primary mt-2">Filter</button>
+                            </form>
+>>>>>>> master
                             <div>
                                 <a href="{{ route('dashboard') }}" class="btn btn-md btn-outline-secondary btn-custom">Dashboard</a>
                                 <a href="{{ route('transaksis.index') }}" class="btn btn-md btn-outline-info btn-custom">Transaksi</a>
                                 <a href="{{ route('products.index') }}" class="btn btn-md btn-outline-primary btn-custom">Produk</a>
+<<<<<<< HEAD
                             </div>
                         </div>
                         <table class="table table-bordered table-hover">
@@ -75,6 +90,45 @@
                             </tbody>
                         </table>
                         <div class="d-flex justify-content-center mt-3">
+=======
+                                <a href="{{ route('laporans.create') }}" class="btn btn-md btn-outline-success btn-custom">Tambah Laporan</a>
+                            </div>
+                        </div>
+                        <table>
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Tanggal Transaksi</th>
+                <th>Nama Pembeli</th>
+                <th>Jumlah Barang</th>
+                <th>Total Pembayaran</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($laporans as $laporan)
+                <tr>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $laporan->Tanggal_transaksi }}</td>
+                    <td>{{ $laporan->Nama_pembeli }}</td>
+                    <td>{{ $laporan->Jumlah_barang }}</td>
+                    <td>{{ $laporan->Total_pembayaran }}</td>
+                    <td>
+                        <a href="{{ route('laporans.show', $laporan->id) }}">Lihat</a>
+                        <form action="{{ route('laporans.destroy', $laporan->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit">Hapus</button>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+
+                        <!-- Tampilkan pagination -->
+                        <div class="mt-3">
+>>>>>>> master
                             {{ $laporans->links() }}
                         </div>
                     </div>
@@ -87,7 +141,11 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
+<<<<<<< HEAD
          @if(session('success'))
+=======
+        @if(session('success'))
+>>>>>>> master
             Swal.fire({
                 icon: "success",
                 title: "BERHASIL",

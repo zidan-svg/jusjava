@@ -3,7 +3,11 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
+<<<<<<< HEAD
         'reference' => 'e2a9921bfa97769fc174305273656667cc6be4d0',
+=======
+        'reference' => '6708e49d9b4f52f4ea1d484a3e1035794d87c62c',
+>>>>>>> master
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -380,9 +384,15 @@
             ),
         ),
         'jeroennoten/laravel-adminlte' => array(
+<<<<<<< HEAD
             'pretty_version' => 'v3.14.1',
             'version' => '3.14.1.0',
             'reference' => '4dafd7931e0971ed75cca2efe052d891c783c1dd',
+=======
+            'pretty_version' => 'v3.14.2',
+            'version' => '3.14.2.0',
+            'reference' => 'dfd6b46be4a1c43338dfa1eb312030604ad95ef8',
+>>>>>>> master
             'type' => 'library',
             'install_path' => __DIR__ . '/../jeroennoten/laravel-adminlte',
             'aliases' => array(),
@@ -406,7 +416,11 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
+<<<<<<< HEAD
             'reference' => 'e2a9921bfa97769fc174305273656667cc6be4d0',
+=======
+            'reference' => '6708e49d9b4f52f4ea1d484a3e1035794d87c62c',
+>>>>>>> master
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
