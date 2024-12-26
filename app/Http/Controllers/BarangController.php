@@ -2,138 +2,77 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Barang; 
-
-use Illuminate\View\View;
-
+use App\Models\Barang;
 use Illuminate\Http\Request;
-
+use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
-
-use Illuminate\Support\Facades\Storage;
 
 class BarangController extends Controller
 {
-    public function index() : View
+    // Tampilkan semua barang
+    public function index(): View
     {
-        $barangs = barang::latest()->paginate(10);
-
+        $barangs = Barang::latest()->paginate(10); // Pagination
         return view('barangs.index', compact('barangs'));
     }
+
+    // Tampilkan form untuk menambahkan barang baru
     public function create(): View
     {
         return view('barangs.create');
     }
 
+    // Simpan data barang baru
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'Nama_barang'        => 'required|min:1',
-            'Jenis'              => 'required|min:1',
-            'Jumlah'             => 'required|numeric',
-            'Deskripsi'          => 'required|min:1'
+            'Nama_barang' => 'required|string|max:255',
+            'Jenis'       => 'required|string|max:255',
+            'Jumlah'      => 'required|integer|min:1',
+            'Deskripsi'   => 'required|string|max:500',
         ]);
 
-        //create product
-        barang::create([
-            'Nama_barang'                  => $request->Nama_barang,
-            'Jenis'                        => $request->Jenis,
-            'Jumlah'                => $request->Jumlah,
-            'Deskripsi'             => $request->Deskripsi
-        ]);
+        Barang::create($request->all());
 
-        return redirect()->route('barangs.index')->with(['success' => 'Data Berhasil Disimpan!']);
+        return redirect()->route('barangs.index')->with('success', 'Data Barang Berhasil Disimpan!');
     }
-    
-    /**
-     * show
-     *
-     * @param  mixed $id
-     * @return View
-     */
+
+    // Tampilkan detail barang
     public function show(string $id): View
     {
-        //get product by ID
-        $barang = barang::findOrFail($id);
-
-        //render view with product
+        $barang = Barang::findOrFail($id);
         return view('barangs.show', compact('barang'));
     }
-    
-    /**
-     * edit
-     *
-     * @param  mixed $id
-     * @return View
-     */
+
+    // Tampilkan form untuk mengedit barang
     public function edit(string $id): View
     {
-        //get product by ID
-        $barang = barang::findOrFail($id);
-
-        //render view with product
+        $barang = Barang::findOrFail($id);
         return view('barangs.edit', compact('barang'));
     }
-        
-    /**
-     * update
-     *
-     * @param  mixed $request
-     * @param  mixed $id
-     * @return RedirectResponse
-     */
-    public function update(Request $request, $id): RedirectResponse
+
+    // Update data barang
+    public function update(Request $request, string $id): RedirectResponse
     {
-        //validate form
         $request->validate([
-            'Nama_barang'        => 'required|min:1',
-            'Jenis'              => 'required|min:1',
-            'Jumlah'             => 'required|numeric',
-            'Deskripsi'          => 'required|min:1'
+            'Nama_barang' => 'required|string|max:255',
+            'Jenis'       => 'required|string|max:255',
+            'Jumlah'      => 'required|integer|min:1',
+            'Deskripsi'   => 'required|string|max:500',
         ]);
 
-        //get product by ID
-        $barang = barang::findOrFail($id);
+        $barang = Barang::findOrFail($id);
+        $barang->update($request->all());
 
-        if ($request) {
-
-
-            $barang->update([
-                'Nama_barang'                  => $request->Nama_barang,
-                'Jenis'                        => $request->Jenis,
-                'Jumlah'                => $request->Jumlah,
-                'Deskripsi'             => $request->Deskripsi
-                            ]);
-
-        } else {
-
-            $barang->update([
-                'Nama_barang'                  => $request->Nama_barang,
-                'Jenis'                        => $request->Jenis,
-                'Jumlah'                => $request->Jumlah,
-                'Deskripsi'             => $request->Deskripsi
-                            ]);
-        }
-
-        //redirect to index
-        return redirect()->route('barangs.index')->with(['success' => 'Data Berhasil Diubah!']);
+        return redirect()->route('barangs.index')->with('success', 'Data Barang Berhasil Diubah!');
     }
-    
-    /**
-     * destroy
-     *
-     * @param  mixed $id
-     * @return RedirectResponse
-     */
-    public function destroy($id): RedirectResponse
-    {
-        //get product by ID
-        $barang = barang::findOrFail($id);
 
-        //delete laporan
+    // Hapus barang
+    public function destroy(string $id): RedirectResponse
+    {
+        $barang = Barang::findOrFail($id);
         $barang->delete();
 
-        //redirect to index
-        return redirect()->route('barangs.index')->with(['success' => 'Data Berhasil Dihapus!']);
+        return redirect()->route('barangs.index')->with('success', 'Data Barang Berhasil Dihapus!');
     }
 }

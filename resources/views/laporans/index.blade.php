@@ -53,32 +53,37 @@
                                 <a href="{{ route('laporans.create') }}" class="btn btn-md btn-outline-success btn-custom">Tambah Laporan</a>
                             </div>
                         </div>
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Tanggal</th>
-                                    <th>Pendapatan</th>
-                                    <th>Jumlah Barang</th>
-                                    <th>Opsi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse($laporans as $laporan)
-                                    <tr>
-                                        <td>{{ $laporan->Tanggal ?? date('Y-m-d') }}</td>
-                                        <td>{{ isset($laporan->Pendapatan) ? number_format($laporan->Pendapatan, 0, ',', '.') : '0' }}</td>
-                                        <td>{{ $laporan->Jumlah_barang ?? '0' }}</td>
-                                        <td>
-                                            <a href="{{ route('laporans.show', $laporan->id) }}" class="btn btn-sm btn-info">Detail</a>
-                                        </td>
-                                    </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="4" class="text-center">Tidak ada data untuk bulan ini.</td>
-                                    </tr>
-                                @endforelse
-                            </tbody>
-                        </table>
+                        <table>
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Tanggal Transaksi</th>
+                <th>Nama Pembeli</th>
+                <th>Jumlah Barang</th>
+                <th>Total Pembayaran</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($laporans as $laporan)
+                <tr>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $laporan->Tanggal_transaksi }}</td>
+                    <td>{{ $laporan->Nama_pembeli }}</td>
+                    <td>{{ $laporan->Jumlah_barang }}</td>
+                    <td>{{ $laporan->Total_pembayaran }}</td>
+                    <td>
+                        <a href="{{ route('laporans.show', $laporan->id) }}">Lihat</a>
+                        <form action="{{ route('laporans.destroy', $laporan->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit">Hapus</button>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
 
                         <!-- Tampilkan pagination -->
                         <div class="mt-3">

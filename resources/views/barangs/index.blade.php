@@ -94,9 +94,9 @@
                                 @forelse ($barangs as $barang)
                                     <tr>
                                         <td>{{ $barang->id }}</td>
-                                        <td>{{ $barang->nama }}</td>
-                                        <td>{{ $barang->jenis }}</td>
-                                        <td>{{ $barang->jumlah }}</td>
+                                        <td>{{ $barang->Nama_barang }}</td>
+                                        <td>{{ $barang->Jenis }}</td>
+                                        <td>{{ $barang->Jumlah }}</td>
                                         <td class="text-center">
                                             <a href="{{ route('barangs.edit', $barang->id) }}" class="btn btn-primary btn-sm">Edit</a>
                                             <form onsubmit="return confirm('Apakah Anda yakin ingin menghapus?');" action="{{ route('barangs.destroy', $barang->id) }}" method="POST" style="display:inline;">

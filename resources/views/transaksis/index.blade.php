@@ -20,7 +20,7 @@
         }
         .btn-custom {
             font-weight: bold;
-=======
+
     <title>Kelola Transaksi - JavaJuice</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -78,14 +78,14 @@
             to {
                 opacity: 1;
             }
->>>>>>> bab818e6c8f5e67fcf4c4f94d1ab115d94476a78
+
         }
     </style>
 </head>
 <body>
 
     <div class="container mt-5">
-<<<<<<< HEAD
+
         <div class="row justify-content-center">
             <div class="col-md-10">
                 <div>
@@ -110,7 +110,7 @@
                                     <th scope="col">Tanggal Transaksi</th>
                                     <th scope="col">Jumlah Barang</th>
                                     <th scope="col">Total Pembayaran</th>
-=======
+
         <div class="header">
             <h1>Kelola Transaksi</h1>
             <p>Di sini Anda dapat menambah, mengedit, atau menghapus data transaksi.</p>
@@ -132,14 +132,14 @@
                                     <th scope="col">Nama Produk</th>
                                     <th scope="col">Jumlah</th>
                                     <th scope="col">Tanggal</th>
->>>>>>> bab818e6c8f5e67fcf4c4f94d1ab115d94476a78
+
                                     <th scope="col" style="width: 20%">Opsi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @forelse ($transaksis as $transaksi)
                                     <tr>
-<<<<<<< HEAD
+
                                         <!-- Menggunakan relasi untuk menampilkan nama produk -->
                                         <td>{{ $transaksi->product->title }}</td>
                                         <td>{{ $transaksi->Tanggal_transaksi }}</td>
@@ -153,7 +153,7 @@
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-sm btn-outline-danger">Hapus</button>
-=======
+
                                         <td>{{ $transaksi->id }}</td>
                                         <td>{{ $transaksi->produk->nama }}</td>
                                         <td>{{ $transaksi->jumlah }}</td>
@@ -164,7 +164,7 @@
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
->>>>>>> bab818e6c8f5e67fcf4c4f94d1ab115d94476a78
+
                                             </form>
                                         </td>
                                     </tr>
@@ -176,24 +176,24 @@
                                         </td>
 =======
                                         <td colspan="5" class="text-center">Tidak ada data transaksi.</td>
->>>>>>> bab818e6c8f5e67fcf4c4f94d1ab115d94476a78
+
                                     </tr>
                                 @endforelse
                             </tbody>
                         </table>
-<<<<<<< HEAD
+
                         <div class="d-flex justify-content-center mt-3">
                             {{ $transaksis->links() }}
                         </div>
-=======
+
                         {{ $transaksis->links() }} <!-- Pagination -->
->>>>>>> bab818e6c8f5e67fcf4c4f94d1ab115d94476a78
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
-<<<<<<< HEAD
+
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -216,8 +216,7 @@
             });
         @endif
     </script>
-=======
->>>>>>> bab818e6c8f5e67fcf4c4f94d1ab115d94476a78
+
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>

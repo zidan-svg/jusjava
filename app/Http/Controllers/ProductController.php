@@ -16,6 +16,7 @@ class ProductController extends Controller
 {
     public function index() : View
     {
+        
         $products = Product::latest()->paginate(10);
 
         return view('products.index', compact('products'));
@@ -25,30 +26,31 @@ class ProductController extends Controller
         return view('products.create');
     }
 
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
         $request->validate([
-            'image'         => 'required|image|mimes:jpeg,jpg,png|max:2048',
-            'title'         => 'required|min:1',
-            'description'   => 'required|min:1',
-            'price'         => 'required|numeric',
-            'stock'         => 'required|integer|min:0'
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'price' => 'required|numeric',
+            'stock' => 'required|integer',
         ]);
-
-        $image = $request->file('image');
-        $image->storeAs('public/products', $image->hashName());
-
-        //create product
+    
+        // Proses upload gambar
+        $path = $request->file('image')->store('products', 'public');
+    
+        // Simpan data ke database
         Product::create([
-            'image'         => $image->hashName(),
-            'title'         => $request->title,
-            'description'   => $request->description,
-            'price'         => $request->price,
-            'stock'         => $request->stock
+            'image' => $path,
+            'title' => $request->title,
+            'description' => $request->description,
+            'price' => $request->price,
+            'stock' => $request->stock,
         ]);
-
-        return redirect()->route('products.index')->with(['success' => 'Data Berhasil Disimpan!']);
+    
+        return redirect()->route('products.index')->with('success', 'Produk berhasil ditambahkan!');
     }
+    
     
     /**
      * show
@@ -106,10 +108,10 @@ class ProductController extends Controller
 
             //upload new image
             $image = $request->file('image');
-            $image->storeAs('public/products', $image->hashName());
+            $image->storeAs('public/storage', $image->hashName());
 
             //delete old image
-            Storage::delete('public/products/'.$product->image);
+            Storage::delete('public/storage/'.$product->image);
 
             //update product with new image
             $product->update([

@@ -2,134 +2,132 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\laporan; 
-
+use App\Models\Transaksi;
 use Illuminate\View\View;
-
 use Illuminate\Http\Request;
-
 use Illuminate\Http\RedirectResponse;
-
-use Illuminate\Support\Facades\Storage;
 
 class LaporanController extends Controller
 {
-    public function index() : View
+    /**
+     * Menampilkan semua laporan transaksi.
+     *
+     * @return View
+     */
+    public function index(): View
     {
-        $laporans = laporan::latest()->paginate(10);
+        // Ambil semua data transaksi dengan paginasi
+        $laporans = Transaksi::latest()->paginate(10);
 
+        // Tampilkan halaman index laporan
         return view('laporans.index', compact('laporans'));
     }
-    public function create(): View
-    {
-        return view('laporans.create');
-    }
+/**
+ * Menampilkan form untuk membuat laporan baru.
+ *
+ * @return View
+ */
+public function create(): View
+{
+    // Tampilkan halaman form untuk membuat laporan
+    return view('laporans.create');
+}
 
-    public function store(Request $request): RedirectResponse
-    {
-        $request->validate([
-            'Tanggal'         => 'required|date',
-            'Pendapatan'      => 'required|numeric',
-            'Jumlah_barang'   => 'required|numeric'
-        ]);
+/**
+ * Menyimpan laporan baru ke database.
+ *
+ * @param  Request $request
+ * @return RedirectResponse
+ */
+public function store(Request $request): RedirectResponse
+{
+    // Validasi input form
+    $request->validate([
+        'product_id'          => 'required|exists:products,id',
+        'Tanggal_transaksi'   => 'required|date',
+        'Nama_pembeli'        => 'required|string|max:255',
+        'Jumlah_barang'       => 'required|integer|min:1',
+        'Total_pembayaran'    => 'required|numeric|min:0',
+    ]);
 
-        //create product
-        laporan::create([
-            'Tanggal'            => $request->Tanggal,
-            'Pendapatan'         => $request->Pendapatan,
-            'Jumlah_barang'      => $request->Jumlah_barang
-        ]);
+    // Simpan data ke dalam database
+    Transaksi::create([
+        'product_id'          => $request->product_id,
+        'Tanggal_transaksi'   => $request->Tanggal_transaksi,
+        'Nama_pembeli'        => $request->Nama_pembeli,
+        'Jumlah_barang'       => $request->Jumlah_barang,
+        'Total_pembayaran'    => $request->Total_pembayaran,
+        'status'              => 'pending', // Set status default
+    ]);
 
-        return redirect()->route('laporans.index')->with(['success' => 'Data Berhasil Disimpan!']);
-    }
-    
+    // Redirect ke halaman laporan dengan pesan sukses
+    return redirect()->route('laporans.index')->with('success', 'Laporan berhasil ditambahkan.');
+}
+
     /**
-     * show
+     * Menampilkan laporan berdasarkan ID.
      *
-     * @param  mixed $id
+     * @param  string $id
      * @return View
      */
     public function show(string $id): View
     {
-        //get product by ID
-        $laporan = laporan::findOrFail($id);
+        // Ambil laporan transaksi berdasarkan ID atau gagal jika tidak ditemukan
+        $laporan = Transaksi::findOrFail($id);
 
-        //render view with product
+        // Tampilkan halaman detail laporan
         return view('laporans.show', compact('laporan'));
     }
-    
+
     /**
-     * edit
+     * Menampilkan form untuk filter laporan.
      *
-     * @param  mixed $id
      * @return View
      */
-    public function edit(string $id): View
+    public function filter(): View
     {
-        //get product by ID
-        $laporan = laporan::findOrFail($id);
-
-        //render view with product
-        return view('laporans.edit', compact('laporan'));
+        // Tampilkan halaman filter laporan
+        return view('laporans.filter');
     }
-        
+
     /**
-     * update
+     * Memproses filter laporan berdasarkan rentang tanggal.
      *
-     * @param  mixed $request
-     * @param  mixed $id
-     * @return RedirectResponse
+     * @param  Request $request
+     * @return View
      */
-    public function update(Request $request, $id): RedirectResponse
+    public function processFilter(Request $request): View
     {
-        //validate form
+        // Validasi input tanggal
         $request->validate([
-            'Tanggal'         => 'required|date',
-            'Pendapatan'      => 'required|numeric',
-            'Jumlah_barang'   => 'required|numeric'
+            'start_date' => 'required|date',
+            'end_date'   => 'required|date|after_or_equal:start_date',
         ]);
 
-        //get product by ID
-        $laporan = laporan::findOrFail($id);
+        // Ambil data transaksi dalam rentang tanggal yang diberikan
+        $laporans = Transaksi::whereBetween('Tanggal_transaksi', [$request->start_date, $request->end_date])
+            ->latest()
+            ->get();
 
-        //check if image is uploaded
-        if ($request) {
-
-
-            $laporan->update([
-                'Tanggal'            => $request->Tanggal,
-                'Pendapatan'         => $request->Pendapatan,
-                'Jumlah_barang'      => $request->Jumlah_barang
-                ]);
-
-        } else {
-
-            $laporan->update([
-                'Tanggal'            => $request->Tanggal,
-                'Pendapatan'         => $request->Pendapatan,
-                'Jumlah_barang'      => $request->Jumlah_barang
-                ]);
-        }
-
-        //redirect to index
-        return redirect()->route('dashboard')->with(['success' => 'Data Berhasil Disimpan!']);
+        // Tampilkan halaman index laporan dengan hasil filter
+        return view('laporans.index', compact('laporans'))->with('success', 'Filter berhasil diterapkan.');
     }
-    
+
     /**
-     * destroy
+     * Menghapus laporan berdasarkan ID.
      *
-     * @param  mixed $id
+     * @param  string $id
      * @return RedirectResponse
      */
-    public function destroy($id): RedirectResponse
+    public function destroy(string $id): RedirectResponse
     {
-        //get product by ID
-        $laporan = laporan::findOrFail($id);
+        // Cari laporan berdasarkan ID atau gagal jika tidak ditemukan
+        $laporan = Transaksi::findOrFail($id);
 
-        //delete laporan
+        // Hapus laporan dari database
         $laporan->delete();
 
-        //redirect to index
-        return redirect()->route('dashboard')->with(['success' => 'Data Berhasil Disimpan!']);
+        // Redirect ke halaman index laporan dengan pesan sukses
+        return redirect()->route('laporans.index')->with('success', 'Laporan berhasil dihapus.');
     }
 }

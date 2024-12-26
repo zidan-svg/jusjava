@@ -28,7 +28,8 @@
                     @forelse ($products as $product)
                         <tr>
                             <td class="text-center">
-                                <img src="{{ asset('storage/'.$product->image) }}" alt="Product Image" class="rounded" style="width: 150px;">
+                            <img src="https://via.placeholder.com/150" alt="Placeholder Image" class="rounded" style="width: 150px;">
+
                             </td>
                             <td>{{ $product->title }}</td>
                             <td>{{ 'Rp ' . number_format($product->price, 2, ',', '.') }}</td>
@@ -98,6 +99,9 @@
             </table>
         </div>
     </div>
+  
+
+
 
     {{-- Card Transaksi --}}
     <div class="card bg-dark text-white mb-4">
@@ -156,8 +160,7 @@
         <div class="card-body">
             <table class="table table-bordered table-dark table-hover">
                 <thead>
-                    <tr>
-                    <th scope="col">Produk</th>
+                    <tr>.
                         <th scope="col">Tanggal</th>
                         <th scope="col">Pendapatan</th>
                         <th scope="col" style="width: 20%">Opsi</th>
