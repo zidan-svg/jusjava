@@ -6,25 +6,12 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-<<<<<<< HEAD
-=======
-    'App\\Http\\Controllers\\AdminController' => $baseDir . '/app/Http/Controllers/AdminController.php',
-    'App\\Http\\Controllers\\BarangController' => $baseDir . '/app/Http/Controllers/BarangController.php',
-    'App\\Http\\Controllers\\BarangKeluarController' => $baseDir . '/app/Http/Controllers/BarangKeluarController.php',
-    'App\\Http\\Controllers\\BarangmasukController' => $baseDir . '/app/Http/Controllers/BarangmasukController.php',
->>>>>>> master
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\DashboardController' => $baseDir . '/app/Http/Controllers/DashboardController.php',
     'App\\Http\\Controllers\\LaporanController' => $baseDir . '/app/Http/Controllers/LaporanController.php',
     'App\\Http\\Controllers\\ProductController' => $baseDir . '/app/Http/Controllers/ProductController.php',
     'App\\Http\\Controllers\\TransaksiController' => $baseDir . '/app/Http/Controllers/TransaksiController.php',
     'App\\Http\\Controllers\\UserController' => $baseDir . '/app/Http/Controllers/UserController.php',
-<<<<<<< HEAD
-=======
-    'App\\Models\\Barang' => $baseDir . '/app/Models/Barang.php',
-    'App\\Models\\Barang_keluar' => $baseDir . '/app/Models/Barang_keluar.php',
-    'App\\Models\\Barang_masuk' => $baseDir . '/app/Models/Barang_masuk.php',
->>>>>>> master
     'App\\Models\\Order' => $baseDir . '/app/Models/Order.php',
     'App\\Models\\Product' => $baseDir . '/app/Models/Product.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',

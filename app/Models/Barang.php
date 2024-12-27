@@ -13,7 +13,7 @@ class Barang extends Model
         'Nama_barang',
         'Jenis',
         'Jumlah',
-        'Deskripsi',
+        'Deskripsi'
     ];
 
 }

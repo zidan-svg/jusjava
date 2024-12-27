@@ -24,12 +24,7 @@ class InputSwitch extends InputGroupComponent
     public function __construct(
         $name, $id = null, $label = null, $igroupSize = null, $labelClass = null,
         $fgroupClass = null, $igroupClass = null, $disableFeedback = null,
-<<<<<<< HEAD
         $errorKey = null, $config = [], $enableOldSupport = null
-=======
-        $errorKey = null, $config = [], $isChecked = null,
-        $enableOldSupport = null
->>>>>>> master
     ) {
         parent::__construct(
             $name, $id, $label, $igroupSize, $labelClass, $fgroupClass,
@@ -37,14 +32,6 @@ class InputSwitch extends InputGroupComponent
         );
 
         $this->config = is_array($config) ? $config : [];
-<<<<<<< HEAD
-=======
-
-        if (isset($isChecked)) {
-            $this->config['state'] = ! empty($isChecked);
-        }
-
->>>>>>> master
         $this->enableOldSupport = isset($enableOldSupport);
     }
 

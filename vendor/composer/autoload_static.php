@@ -516,25 +516,12 @@ class ComposerStaticInit1f10bfa3e592970d062c2a8a3172823d
     );
 
     public static $classMap = array (
-<<<<<<< HEAD
-=======
-        'App\\Http\\Controllers\\AdminController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminController.php',
-        'App\\Http\\Controllers\\BarangController' => __DIR__ . '/../..' . '/app/Http/Controllers/BarangController.php',
-        'App\\Http\\Controllers\\BarangKeluarController' => __DIR__ . '/../..' . '/app/Http/Controllers/BarangKeluarController.php',
-        'App\\Http\\Controllers\\BarangmasukController' => __DIR__ . '/../..' . '/app/Http/Controllers/BarangmasukController.php',
->>>>>>> master
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\DashboardController' => __DIR__ . '/../..' . '/app/Http/Controllers/DashboardController.php',
         'App\\Http\\Controllers\\LaporanController' => __DIR__ . '/../..' . '/app/Http/Controllers/LaporanController.php',
         'App\\Http\\Controllers\\ProductController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProductController.php',
         'App\\Http\\Controllers\\TransaksiController' => __DIR__ . '/../..' . '/app/Http/Controllers/TransaksiController.php',
         'App\\Http\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController.php',
-<<<<<<< HEAD
-=======
-        'App\\Models\\Barang' => __DIR__ . '/../..' . '/app/Models/Barang.php',
-        'App\\Models\\Barang_keluar' => __DIR__ . '/../..' . '/app/Models/Barang_keluar.php',
-        'App\\Models\\Barang_masuk' => __DIR__ . '/../..' . '/app/Models/Barang_masuk.php',
->>>>>>> master
         'App\\Models\\Order' => __DIR__ . '/../..' . '/app/Models/Order.php',
         'App\\Models\\Product' => __DIR__ . '/../..' . '/app/Models/Product.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
