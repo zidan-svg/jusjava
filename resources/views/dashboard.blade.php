@@ -74,9 +74,9 @@
                 <tbody>
                     @forelse ($barangs as $barang)
                         <tr>
-                            <td>{{ $barangkeluar->Nama_barang }}</td>
-                            <td>{{ $barangkeluar->Jenis }}</td>
-                            <td>{{ $barangkeluar->Jumlah }}</td>
+                            <td>{{ $barang->Nama_barang }}</td>
+                            <td>{{ $barang->Jenis }}</td>
+                            <td>{{ $barang->Jumlah }}</td>
                             <td class="text-center">
                                 <form action="{{ route('barangs.destroy', $barang->id) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('Apakah Anda yakin ingin menghapus barang keluar ini?');">
                                     <a href="{{ route('barangs.show', $barang->id) }}" class="btn btn-sm btn-dark">Lihat</a>
@@ -116,15 +116,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($barang_masuks as $barang_masuk)
+                    @forelse ($barangmasuks as $barangmasuk)
                         <tr>
-                            <td>{{ $barang_masuk->Nama_barang }}</td>
-                            <td>{{ $barang_masuk->Jenis }}</td>
-                            <td>{{ $barang_masuk->Jumlah }}</td>
+                            <td>{{ $barangmasuk->Namabarang }}</td>
+                            <td>{{ $barangmasuk->Jenis }}</td>
+                            <td>{{ $barangmasuk->Jumlah }}</td>
                             <td class="text-center">
-                                <form action="{{ route('barang_masuks.destroy', $barang_masuk->id) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('Apakah Anda yakin ingin menghapus barang keluar ini?');">
-                                    <a href="{{ route('barang_masuks.show', $barang_masuk->id) }}" class="btn btn-sm btn-dark">Lihat</a>
-                                    <a href="{{ route('barang_masuks.edit', $barang_masuk->id) }}" class="btn btn-sm btn-primary">Edit</a>
+                                <form action="{{ route('barangmasuks.destroy', $barangmasuk->id) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('Apakah Anda yakin ingin menghapus barang keluar ini?');">
+                                    <a href="{{ route('barangmasuks.show', $barangmasuk->id) }}" class="btn btn-sm btn-dark">Lihat</a>
+                                    <a href="{{ route('barangmasuks.edit', $barangmasuk->id) }}" class="btn btn-sm btn-primary">Edit</a>
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
